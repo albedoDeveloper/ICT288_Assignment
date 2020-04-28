@@ -23,7 +23,8 @@ public class SwapDecide : MonoBehaviour {
 
 	void OnTriggerStay(Collider collision)
 	{
-		if (collision.tag == "Train")
+        Debug.Log("Collides");
+        if (collision.tag == "Train")
 		{
 			
 			if (Input.GetKey(KeyCode.LeftArrow) && swapLeft)
