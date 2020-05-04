@@ -4,13 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
   - Switch
   - RailSwitcher
-  - Train
-  - CoalPile
   - CoalPiece
->>>>>>> master
   layers:
   - Default
   - TransparentFX
@@ -20,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - Terrain
+  - 
   - 
   - 
   - 
