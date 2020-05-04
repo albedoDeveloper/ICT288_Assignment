@@ -6,7 +6,8 @@ using PathCreation;
 public class SpeedModifier : MonoBehaviour {
 
     public GameObject train;
-	[HideInInspector]
+
+    [HideInInspector]
 	public float accel = 0.03f;
 	
 	// Use this for initialization
@@ -27,7 +28,7 @@ public class SpeedModifier : MonoBehaviour {
 		
 	void OnMouseDrag()
 	{
-
+        Debug.Log("hello");
 		if (train.GetComponentInParent<PathCreation.Examples.PathFollower>().speed < 20)
             train.GetComponentInParent<PathCreation.Examples.PathFollower>().speed = train.GetComponentInParent<PathCreation.Examples.PathFollower>().speed + accel;                           
 
