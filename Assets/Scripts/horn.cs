@@ -7,15 +7,14 @@ public class horn : MonoBehaviour
     private Vector3 startPos;
     [HideInInspector]
     public int hornPosition = 0;
+
     void Start()
     {
         startPos = transform.localPosition;   
     }
 
-
     private void Update()
     {
-
         if (hornPosition == 1)
         {
             transform.localPosition = new Vector3(transform.localPosition.x + 0.01f, transform.localPosition.y, transform.localPosition.z);
@@ -30,7 +29,6 @@ public class horn : MonoBehaviour
                 hornPosition = 0;
         }
  
-
     }
 
     private void OnMouseDown()
@@ -42,8 +40,4 @@ public class horn : MonoBehaviour
         }
            
     }
-
-
-
-
 }
