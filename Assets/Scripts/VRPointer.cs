@@ -62,7 +62,7 @@ public class VRPointer : MonoBehaviour
         {
             if (_hit.collider.CompareTag("Horn") && (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)))
             {
-                horn.hornPosition = 0;
+                horn.hornPosition = 1;
                 horn.GetComponent<AudioSource>().Play();
             }
         }
