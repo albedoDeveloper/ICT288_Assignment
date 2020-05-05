@@ -1,0 +1,241 @@
+fileFormatVersion: 2
+guid: f6464ce9e7b5ebe40841dc2c9ae04d75
+timeCreated: 1467916786
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: bolt
+    100002: //RootNode
+    100004: Crossbow
+    100006: bolt_LOD0
+    100008: bolt_LOD1
+    100010: Crossbow_LOD0
+    100012: Crossbow_LOD1
+    100014: Crossbowe
+    100016: CrossbowHub
+    100018: CrossbowLArm1
+    100020: CrossbowLArmPalm
+    100022: CrossbowLArmString
+    100024: CrossbowRArm1
+    100026: CrossbowRArmPalm
+    100028: CrossbowRArmString
+    100030: CrossbowRoller
+    400000: bolt
+    400002: //RootNode
+    400004: Crossbow
+    400006: bolt_LOD0
+    400008: bolt_LOD1
+    400010: Crossbow_LOD0
+    400012: Crossbow_LOD1
+    400014: Crossbowe
+    400016: CrossbowHub
+    400018: CrossbowLArm1
+    400020: CrossbowLArmPalm
+    400022: CrossbowLArmString
+    400024: CrossbowRArm1
+    400026: CrossbowRArmPalm
+    400028: CrossbowRArmString
+    400030: CrossbowRoller
+    2300000: bolt
+    2300002: Crossbow
+    2300004: bolt_LOD0
+    2300006: bolt_LOD1
+    2300008: Crossbow_LOD0
+    2300010: Crossbow_LOD1
+    3300000: bolt
+    3300002: Crossbow
+    3300004: bolt_LOD0
+    3300006: bolt_LOD1
+    3300008: Crossbow_LOD0
+    3300010: Crossbow_LOD1
+    4300000: Crossbow
+    4300002: bolt
+    4300004: Crossbow_LOD0
+    4300006: bolt_LOD0
+    4300008: Crossbow_LOD1
+    4300010: bolt_LOD1
+    7400000: prepare
+    7400002: shoot
+    9500000: //RootNode
+    13700000: Crossbow_LOD0
+    13700002: Crossbow_LOD1
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: prepare
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bolt_LOD0
+        weight: 1
+      - path: bolt_LOD1
+        weight: 1
+      - path: Crossbow_LOD0
+        weight: 1
+      - path: Crossbow_LOD1
+        weight: 1
+      - path: CrossbowHub
+        weight: 1
+      - path: CrossbowHub/Crossbowe
+        weight: 1
+      - path: CrossbowHub/CrossbowLArm1
+        weight: 1
+      - path: CrossbowHub/CrossbowLArm1/CrossbowLArmString
+        weight: 1
+      - path: CrossbowHub/CrossbowLArm1/CrossbowLArmString/CrossbowLArmPalm
+        weight: 1
+      - path: CrossbowHub/CrossbowRArm1
+        weight: 1
+      - path: CrossbowHub/CrossbowRArm1/CrossbowRArmString
+        weight: 1
+      - path: CrossbowHub/CrossbowRArm1/CrossbowRArmString/CrossbowRArmPalm
+        weight: 1
+      - path: CrossbowHub/CrossbowRoller
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: shoot
+      takeName: Take 001
+      firstFrame: 25
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bolt_LOD0
+        weight: 1
+      - path: bolt_LOD1
+        weight: 1
+      - path: Crossbow_LOD0
+        weight: 1
+      - path: Crossbow_LOD1
+        weight: 1
+      - path: CrossbowHub
+        weight: 1
+      - path: CrossbowHub/Crossbowe
+        weight: 1
+      - path: CrossbowHub/CrossbowLArm1
+        weight: 1
+      - path: CrossbowHub/CrossbowLArm1/CrossbowLArmString
+        weight: 1
+      - path: CrossbowHub/CrossbowLArm1/CrossbowLArmString/CrossbowLArmPalm
+        weight: 1
+      - path: CrossbowHub/CrossbowRArm1
+        weight: 1
+      - path: CrossbowHub/CrossbowRArm1/CrossbowRArmString
+        weight: 1
+      - path: CrossbowHub/CrossbowRArm1/CrossbowRArmString/CrossbowRArmPalm
+        weight: 1
+      - path: CrossbowHub/CrossbowRoller
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - 0.25
+    - 0.01
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
