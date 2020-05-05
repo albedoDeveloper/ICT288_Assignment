@@ -24,6 +24,7 @@ public class EndPlatform : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        Debug.Log(PlayerPrefs.GetInt("TotalSize"));
 
     }
 
@@ -46,17 +47,17 @@ public class EndPlatform : MonoBehaviour {
                     {
                         if (scoreInfo.timer < float.Parse(PlayerPrefs.GetString(i.ToString())))
                         {
-                            Debug.Log(i);
-                            for (int j = PlayerPrefs.GetInt("TotalSize"); j > i ; j--)
-                            {     
-                                if (j < 5)
+                            for (int j = PlayerPrefs.GetInt("TotalSize"); j < i ; j--)
+                            {
+                                if (!PlayerPrefs.HasKey((j + 1).ToString()) && j != 4)
                                 {
-                                    
-                                    PlayerPrefs.SetString((j).ToString(), (PlayerPrefs.GetString((j - 1).ToString())));
-
-                                    if (j == PlayerPrefs.GetInt("TotalSize"))
-                                        PlayerPrefs.SetInt("TotalSize", PlayerPrefs.GetInt("TotalSize") + 1);
+                                    PlayerPrefs.SetString((j + 1).ToString(), (j).ToString());
+                                    PlayerPrefs.SetInt("TotalSize", PlayerPrefs.GetInt("TotalSize") + 1);
                                 }
+                                    
+
+                                else
+                                    PlayerPrefs.SetString((j).ToString(), (j - 1).ToString());
                             }
 
                             PlayerPrefs.SetString(i.ToString(), scoreInfo.timer.ToString());

@@ -28,6 +28,7 @@ public class SwapToNewTrack : MonoBehaviour {
 	{
 		if (collider.tag == "Train")
 		{
+			Debug.Log(left != null);
 			
 			if (decider.path == 1) //Left
 			{

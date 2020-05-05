@@ -53,7 +53,7 @@ public class VRPointer : MonoBehaviour
     {
         if (_heldItem == null && _didHit)
         {
-            if (_hit.collider.name == "CoalPile" && (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetButtonDown("Fire1")))
+            if (_hit.collider.CompareTag("Interactable") && (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetButtonDown("Fire1")))
             {
                 _heldItem = Instantiate(_coalPiecePrefab, _holdPoint, false);
                 _pointerBeam.SetActive(false);
