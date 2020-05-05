@@ -1,16 +1,19 @@
-﻿using PathCreation.Examples;
-using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * Author: Robert Valentic
+ */
+
+using PathCreation.Examples;
 using UnityEngine;
 
 public class Firebox : MonoBehaviour
 {
+    [SerializeField] float _temperature = 0;
     [SerializeField] private PathFollower _train = null;
     [SerializeField] private float _coolingRate = 2;
     [SerializeField] private float _maxTemp = 30;
-
+    [SerializeField] TempGauge _tempGauge = null;
+    [SerializeField] ParticleSystem _explosion = null;
     private Material _mat;
-    [SerializeField] private float _temperature = 0;
 
     private void Start()
     {
@@ -23,13 +26,13 @@ public class Firebox : MonoBehaviour
         {
             Destroy(other.gameObject);
             _temperature += 10;
-            _train.speed = _temperature;
         }
     }
 
     private void Update()
     {
         _temperature -= _coolingRate * Time.deltaTime;
+        _train.speed = _temperature;
         if (_temperature < 0)
         {
             _temperature = 0;
@@ -37,8 +40,17 @@ public class Firebox : MonoBehaviour
         else if (_temperature > _maxTemp)
         {
             _temperature = _maxTemp;
+            StopTrain();
         }
         SetEmissiveColour();
+        _tempGauge.UpdatePointer(_temperature / _maxTemp);
+    }
+
+    private void StopTrain()
+    {
+        _explosion.Play();
+        _temperature = 0;
+        _train.speed = 0;
     }
 
     private void SetEmissiveColour()

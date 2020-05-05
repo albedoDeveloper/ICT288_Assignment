@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlowObstacle : MonoBehaviour
 {
-	//GameObject train;
+	public GameObject train;
 
 	// Use this for initialization
 	void Start()
@@ -20,10 +20,10 @@ public class SlowObstacle : MonoBehaviour
 
 	void OnTriggerStay(Collider collider)
 	{
-		if (collider.tag == "SlowObstacle")
+		if (collider.tag == "Train")
 		{
-			if(gameObject.GetComponent<PathCreation.Examples.PathFollower>().speed > 0.5f)
-				gameObject.GetComponent<PathCreation.Examples.PathFollower>().speed = gameObject.GetComponent<PathCreation.Examples.PathFollower>().speed - 0.1f;
+			if (train.GetComponent<PathCreation.Examples.PathFollower>().speed > 0.5f)
+                train.GetComponent<PathCreation.Examples.PathFollower>().speed = train.GetComponent<PathCreation.Examples.PathFollower>().speed - 0.4f;
 				//train.GetComponentInChildren<SpeedModifier>().accel = 0.001f;
 		}
 	}
