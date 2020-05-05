@@ -7,6 +7,8 @@ TagManager:
   - Switch
   - RailSwitcher
   - CoalPiece
+  - CoalPile
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Target
   - 
   - 
   - 

@@ -17,6 +17,9 @@ public class VRPointer : MonoBehaviour
     private bool _didHit = false;
     private bool _pickupThisFrame = false;
 
+    //added transform variable
+    private Transform _testTransform;
+
     private void Update()
     {
         PerformRaycast();
@@ -34,13 +37,23 @@ public class VRPointer : MonoBehaviour
         {
             _didHit = Physics.Raycast(transform.position, transform.forward, out _hit);
         }
+
+        //adding Outline functionality here
+        if (_hit.collider.CompareTag("Interactable"))
+        {
+            _hit.transform.GetComponent<Outline>().enabled = true;
+            _testTransform = _hit.transform;
+        }
+        else
+            _testTransform.GetComponent<Outline>().enabled = false;
+        /************************************************************************/
     }
 
     private void PickupCoal()
     {
         if (_heldItem == null && _didHit)
         {
-            if (_hit.collider.CompareTag("CoalPile") && (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetButtonDown("Fire1")))
+            if (_hit.collider.CompareTag("Interactable") && (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetButtonDown("Fire1")))
             {
                 _heldItem = Instantiate(_coalPiecePrefab, _holdPoint, false);
                 _pointerBeam.SetActive(false);
