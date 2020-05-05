@@ -28,7 +28,7 @@ public class SpeedModifier : MonoBehaviour {
 		
 	void OnMouseDrag()
 	{
-        Debug.Log("hello");
+
 		if (train.GetComponentInParent<PathCreation.Examples.PathFollower>().speed < 20)
             train.GetComponentInParent<PathCreation.Examples.PathFollower>().speed = train.GetComponentInParent<PathCreation.Examples.PathFollower>().speed + accel;                           
 
