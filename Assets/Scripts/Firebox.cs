@@ -20,6 +20,11 @@ public class Firebox : MonoBehaviour
         _mat = GetComponent<Renderer>().material;
     }
 
+    public void SetTemperatute(float temp)
+    {
+        _temperature = temp;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("CoalPiece"))
