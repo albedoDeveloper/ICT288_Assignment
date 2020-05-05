@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class VRPointer : MonoBehaviour
 {
@@ -25,11 +26,20 @@ public class VRPointer : MonoBehaviour
     {
         PerformRaycast();
         PickupCoal();
+        CheckButtons();
         if (!_pickupThisFrame)
         {
             ThrowHeldItem();
         }
         _pickupThisFrame = false;
+    }
+
+    private void CheckButtons()
+    {
+        if (_didHit && _hit.collider.name == "NewGameButton")
+        {
+            SceneManager.LoadScene("Robs_Scene");
+        }
     }
 
     private void PerformRaycast()
@@ -44,7 +54,7 @@ public class VRPointer : MonoBehaviour
     {
         if (_heldItem == null && _didHit)
         {
-            if (_hit.collider.CompareTag("CoalPile") && (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetButtonDown("Fire1")))
+            if (_hit.collider.name == "CoalPile" && (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)))
             {
                 _heldItem = Instantiate(_coalPiecePrefab, _holdPoint, false);
                 _pointerBeam.SetActive(false);
@@ -57,7 +67,7 @@ public class VRPointer : MonoBehaviour
     {
         if (_heldItem != null)
         {
-            if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetButtonDown("Fire1")) && _heldItem.CompareTag("CoalPiece"))
+            if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)) && _heldItem.CompareTag("CoalPiece"))
             {
                 _heldItem.transform.SetParent(_trainParent);
                 Rigidbody rb = _heldItem.GetComponent<Rigidbody>();
