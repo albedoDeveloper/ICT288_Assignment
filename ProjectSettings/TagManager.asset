@@ -7,6 +7,9 @@ TagManager:
   - Switch
   - RailSwitcher
   - CoalPiece
+  - CoalPile
+  - Train
+  - Horn
   layers:
   - Default
   - TransparentFX

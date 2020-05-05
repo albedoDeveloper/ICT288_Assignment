@@ -16,6 +16,8 @@ public class VRPointer : MonoBehaviour
     [SerializeField] private float _throwForce = 100;
     [SerializeField] private Transform _trainParent = null;
 
+    [SerializeField] private horn horn = null;
+
     private GameObject _heldItem = null;
     private RaycastHit _hit;
     private bool _didHit = false;
@@ -25,6 +27,7 @@ public class VRPointer : MonoBehaviour
     {
         PerformRaycast();
         PickupCoal();
+        PullHorn();
         if (!_pickupThisFrame)
         {
             ThrowHeldItem();
@@ -53,6 +56,20 @@ public class VRPointer : MonoBehaviour
         }
     }
 
+    private void PullHorn()
+    {
+        if (_heldItem == null && _didHit)
+        {
+            if (_hit.collider.CompareTag("Horn") && (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)))
+            {
+                horn.hornPosition = 0;
+                horn.GetComponent<AudioSource>().Play();
+            }
+        }
+    }
+
+
+
     private void ThrowHeldItem()
     {
         if (_heldItem != null)
@@ -68,4 +85,8 @@ public class VRPointer : MonoBehaviour
             }
         }
     }
+
+
+
+
 }
