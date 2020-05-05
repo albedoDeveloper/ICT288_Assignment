@@ -8,13 +8,24 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float _speed = 1;
-    [SerializeField] private float _dropRate = 3;
+    [SerializeField] private float _speed = 15;
+    private Rigidbody _rb = null;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        transform.Translate(transform.forward * _speed * Time.deltaTime, Space.World);
-        transform.Rotate(-transform.right, _dropRate * Time.deltaTime);
+        _rb = GetComponent<Rigidbody>();
+        Destroy(gameObject, 15);
+        _rb.AddForce(transform.forward * _speed, ForceMode.Impulse);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        _rb.velocity = -transform.forward;
+
+        if (collision.collider.name == "Target")
+        {
+            Animator anim = collision.collider.GetComponent<Animator>();
+            anim.SetTrigger("Fall");
+        }
     }
 }

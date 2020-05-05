@@ -29,11 +29,20 @@ public class VRPointer : MonoBehaviour
     {
         PerformRaycast();
         PickupItem();
+        DropItem();
         if (!_pickupThisFrame)
         {
             ThrowHeldItem();
         }
         _pickupThisFrame = false;
+    }
+
+    private void DropItem()
+    {
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad) && _crossbowEquipped)
+        {
+            DropCrossbow();
+        }
     }
 
     private void PerformRaycast()
@@ -48,7 +57,7 @@ public class VRPointer : MonoBehaviour
     {
         if (_heldItem == null && _didHit)
         {
-            if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetButtonDown("Fire1")))
+            if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)))
             {
                 if (_hit.collider.name == "CoalPile")
                 {
@@ -64,6 +73,14 @@ public class VRPointer : MonoBehaviour
         }
     }
 
+    private void DropCrossbow()
+    {
+        _fpsCrossbow.SetActive(false);
+        _crossbowPickup.SetActive(true);
+        _controller.SetActive(true);
+        _crossbowEquipped = false;
+    }
+
     private void EquipCrossbow()
     {
         _fpsCrossbow.SetActive(true);
@@ -76,7 +93,7 @@ public class VRPointer : MonoBehaviour
     {
         if (_heldItem != null)
         {
-            if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetButtonDown("Fire1")) && _heldItem.CompareTag("CoalPiece"))
+            if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)) && _heldItem.CompareTag("CoalPiece"))
             {
                 _heldItem.transform.SetParent(_trainParent);
                 Rigidbody rb = _heldItem.GetComponent<Rigidbody>();
