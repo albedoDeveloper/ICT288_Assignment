@@ -6,26 +6,43 @@ using UnityEngine;
 public class Firebox : MonoBehaviour
 {
     [SerializeField] private PathFollower _train = null;
-    [SerializeField] private float _trainDrag = 1;
+    [SerializeField] private float _coolingRate = 2;
+    [SerializeField] private float _maxTemp = 30;
 
-    private float _speed = 0;
+    private Material _mat;
+    [SerializeField] private float _temperature = 0;
+
+    private void Start()
+    {
+        _mat = GetComponent<Renderer>().material;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("CoalPiece"))
         {
             Destroy(other.gameObject);
-            _speed += 10;
-            _train.speed = _speed;
+            _temperature += 10;
+            _train.speed = _temperature;
         }
     }
 
     private void Update()
     {
-        _speed -= _trainDrag * Time.deltaTime;
-        if (_speed < 0)
+        _temperature -= _coolingRate * Time.deltaTime;
+        if (_temperature < 0)
         {
-            _speed = 0;
+            _temperature = 0;
         }
+        else if (_temperature > _maxTemp)
+        {
+            _temperature = _maxTemp;
+        }
+        SetEmissiveColour();
+    }
+
+    private void SetEmissiveColour()
+    {
+        _mat.SetColor("_EmissionColor", Color.Lerp(Color.black, Color.red, _temperature / _maxTemp));
     }
 }
