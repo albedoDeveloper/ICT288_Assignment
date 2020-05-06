@@ -7,6 +7,9 @@ TagManager:
   - Switch
   - RailSwitcher
   - CoalPiece
+  - Train
+  - CoalPile
+  - Button
   layers:
   - Default
   - TransparentFX

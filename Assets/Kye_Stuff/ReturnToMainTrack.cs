@@ -8,19 +8,6 @@ public class ReturnToMainTrack : MonoBehaviour {
 	public PathCreator mainPath = null;
 	public PathCreation.Examples.PathFollower follower = null;
 
-
-	// Use this for initialization
-	void Start()
-	{
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
-	}
-
 	void OnTriggerEnter(Collider collider)
 	{
 		var currentPos = transform.position;

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
 
-
-
 public class SwapToNewTrack : MonoBehaviour {
 
 	public SwapDecide decider;
@@ -14,21 +12,10 @@ public class SwapToNewTrack : MonoBehaviour {
 	[HideInInspector]
 	public float distancetravelled;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	void OnTriggerEnter(Collider collider)
 	{
 		if (collider.tag == "Train")
 		{
-			
 			if (decider.path == 1) //Left
 			{
 				if (left != null)
