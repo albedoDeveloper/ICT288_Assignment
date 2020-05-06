@@ -23,6 +23,7 @@ public class Projectile : MonoBehaviour
         if (collision.collider.name == "Target")
         {
             collision.collider.GetComponent<Target>().Knock();
+            Destroy(gameObject);
         }
     }
 }
