@@ -18,6 +18,7 @@ public class VRPointer : MonoBehaviour
     [SerializeField] GameObject _crossbowPickup = null;
     [SerializeField] GameObject _controller = null;
     [SerializeField] GameObject _fpsCrossbow = null;
+    [SerializeField] private horn horn = null;
 
     private GameObject _heldItem = null;
     private RaycastHit _hit;
@@ -29,6 +30,7 @@ public class VRPointer : MonoBehaviour
     {
         PerformRaycast();
         PickupItem();
+        PullHorn();
         DropItem();
         if (!_pickupThisFrame)
         {
@@ -73,6 +75,8 @@ public class VRPointer : MonoBehaviour
         }
     }
 
+
+
     private void DropCrossbow()
     {
         _fpsCrossbow.SetActive(false);
@@ -87,6 +91,18 @@ public class VRPointer : MonoBehaviour
         _crossbowPickup.SetActive(false);
         _controller.SetActive(false);
         _crossbowEquipped = true;
+    }
+
+    private void PullHorn()
+    {
+        if (_heldItem == null && _didHit)
+        {
+            if (_hit.collider.CompareTag("Horn") && (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)))
+            {
+                horn.hornPosition = 1;
+                horn.GetComponent<AudioSource>().Play();
+            }
+        }
     }
 
     private void ThrowHeldItem()
