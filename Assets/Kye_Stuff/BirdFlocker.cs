@@ -11,7 +11,6 @@ public class BirdFlocker : MonoBehaviour {
 
     [SerializeField]
     private horn horn = null;
-
     private bool hasFlown = false;
 
     void OnTriggerStay(Collider collider)
