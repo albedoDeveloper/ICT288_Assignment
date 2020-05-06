@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: a891306faa4c66346847bf7358be25c6
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Kye_Scene 1.unity
     guid: 85fc14b488393aa418fad654d08e8615
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Robs_Scene.unity
     guid: 1624b368e90d0714bab2af3fef8e5a0b
   m_configObjects: {}

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class InteractManager : MonoBehaviour
 {
+    //class created by Brendon Smith.
+
     private Transform _selection;
+    private Transform _toggledObject;
 
     private RaycastHit _hit;
 
@@ -19,27 +22,43 @@ public class InteractManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //selection
+        //if raycast intersects with a collider
         if (Physics.Raycast(cam.position, cam.forward, out _hit))
         {
-            _selection = _hit.transform;
+            Debug.Log(_hit.transform.name);
 
-            if (_selection.CompareTag("Interactable"))
+            //if collider obj has outline script
+            if (_hit.collider.GetComponent<Outline>() != null)
             {
-                _hit.collider.gameObject.GetComponent<Outline>().enabled = true;
                 _selection = _hit.transform;
-                Debug.Log("Yeet");
-            }
-            if(_selection.CompareTag("CoalPile"))
-            {
-                _hit.collider.gameObject.GetComponent<Outline>().enabled = true;
-                _selection = _hit.transform;
-                Debug.Log("Yeet2");
+                _toggledObject = _hit.transform;
+
+                //if obj is Horn obj
+                if (_selection.CompareTag("Horn"))
+                {
+                    //_hit.transform.GetComponent<Outline>().enabled = true;
+                    _selection.GetComponent<Outline>().enabled = true;
+                }
+                else
+                    if (_selection.CompareTag("CoalPile"))
+                    {
+                        _selection.GetComponent<Outline>().enabled = true;
+                    }
             }
             else
-                _selection.GetComponent<Outline>().enabled = false;
-            _testTransform.GetComponent<Outline>().enabled = false;
-        }
-    }
-}
+                if (_toggledObject.GetComponent<Outline>() != null)
+                {
+                    _toggledObject.transform.GetComponent<Outline>().enabled = false;
+                }
+
+        }//end of Raycast
+        else
+            if (_toggledObject.GetComponent<Outline>() != null)
+            {
+                _toggledObject.transform.GetComponent<Outline>().enabled = false;
+            }
+
+    }//end of update
+    
+}//end of class
 

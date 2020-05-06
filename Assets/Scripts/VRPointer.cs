@@ -56,7 +56,7 @@ public class VRPointer : MonoBehaviour
         }
 
         //adding Outline functionality here
-        if (_hit.collider.CompareTag("Interactable"))
+        if (_hit.collider.CompareTag("Horn"))
         {
             _hit.transform.GetComponent<Outline>().enabled = true;
             _testTransform = _hit.transform;
