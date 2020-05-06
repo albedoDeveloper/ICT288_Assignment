@@ -10,6 +10,8 @@ TagManager:
   - Train
   - CoalPile
   - Button
+  - Horn
+  - Interactable
   layers:
   - Default
   - TransparentFX

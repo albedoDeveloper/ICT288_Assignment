@@ -62,7 +62,13 @@ public class VRPointer : MonoBehaviour
             _testTransform = _hit.transform;
         }
         else
-            _testTransform.GetComponent<Outline>().enabled = false;
+            if (_hit.collider.CompareTag("CoalPile"))
+            {
+                _hit.transform.GetComponent<Outline>().enabled = true;
+                _testTransform = _hit.transform;
+            }
+            else
+                _testTransform.GetComponent<Outline>().enabled = false;
         /************************************************************************/
 
     }
