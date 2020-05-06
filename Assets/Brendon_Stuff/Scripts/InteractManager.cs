@@ -6,8 +6,8 @@ public class InteractManager : MonoBehaviour
 {
     //[SerializeField]
     //private string interactableTag = "Interactable";
-    //[SerializeField]
-    //private Outline testScript;
+    [SerializeField]
+    private Outline testScript;
 
     private Transform _selection;
     private Transform _toggledObject;
@@ -16,6 +16,9 @@ public class InteractManager : MonoBehaviour
 
     [SerializeField]
     Transform cam;
+
+    float x = Screen.width / 2;
+    float y = Screen.height / 2;
 
     void Start()
     {
