@@ -25,6 +25,7 @@ public class VRPointer : MonoBehaviour
     private bool _didHit = false;
     private bool _pickupThisFrame = false;
     private bool _crossbowEquipped = false;
+    private Transform _testTransform;
 
     private void Update()
     {
@@ -53,6 +54,17 @@ public class VRPointer : MonoBehaviour
         {
             _didHit = Physics.Raycast(transform.position, transform.forward, out _hit);
         }
+
+        //adding Outline functionality here
+        if (_hit.collider.CompareTag("Interactable"))
+        {
+            _hit.transform.GetComponent<Outline>().enabled = true;
+            _testTransform = _hit.transform;
+        }
+        else
+            _testTransform.GetComponent<Outline>().enabled = false;
+        /************************************************************************/
+
     }
 
     private void PickupItem()
