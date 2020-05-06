@@ -10,35 +10,36 @@ public class SwapDecide : MonoBehaviour {
 	
 	public PathCreator left, right = null;
 	public bool swapLeft, swapRight;
-	
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-	void OnTriggerStay(Collider collision)
+	//void OnTriggerStay(Collider collision)
+	//{
+	//	Debug.Log("Collides");
+	//	if (collision.tag == "Train")
+	//	{
+	//		if (Input.GetKey(KeyCode.LeftArrow) && swapLeft)
+	//		{
+
+	//			if (left != null)
+	//				path = 1;
+	//		}
+
+	//		if (Input.GetKey(KeyCode.RightArrow) && swapRight)
+	//		{
+	//			if (right != null)
+	//				path = 2;
+	//		}
+	//	}
+	//}
+
+	public void SwapTrack()
 	{
-        Debug.Log("Collides");
-        if (collision.tag == "Train")
+		if (swapLeft && (left != null))
 		{
-			
-			if (Input.GetKey(KeyCode.LeftArrow) && swapLeft)
-			{
-
-				if (left != null)
-					path = 1;
-			}
-
-			if (Input.GetKey(KeyCode.RightArrow) && swapRight)
-			{
-				if (right != null)
-					path = 2;
-			}
+			path = 1;
+		}
+		else if (swapRight && (right != null))
+		{
+			path = 2;
 		}
 	}
 }

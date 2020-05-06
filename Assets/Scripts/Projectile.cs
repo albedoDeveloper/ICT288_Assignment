@@ -20,12 +20,9 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        _rb.velocity = -transform.forward;
-
         if (collision.collider.name == "Target")
         {
-            Animator anim = collision.collider.GetComponent<Animator>();
-            anim.SetTrigger("Fall");
+            collision.collider.GetComponent<Target>().Knock();
         }
     }
 }

@@ -49,6 +49,7 @@ public class Firebox : MonoBehaviour
         }
         SetEmissiveColour();
         _tempGauge.UpdatePointer(_temperature / _maxTemp);
+        //_temperature = 30;// DEBUG
     }
 
     private void StopTrain()
