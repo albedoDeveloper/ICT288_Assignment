@@ -15,8 +15,6 @@ public class FPSMouseLook : MonoBehaviour
 
     public float jellyPressure;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,18 +34,15 @@ public class FPSMouseLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
 
+        ////Shoot jelly
+        //if (Input.GetButtonDown("Fire1"))
+        //{
+        //    RaycastHit hit;
+        //    Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
 
-        //Shoot jelly
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            RaycastHit hit;
-            Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
-
-            }
-        }
-
+        //    }
+        //}
     }
 }

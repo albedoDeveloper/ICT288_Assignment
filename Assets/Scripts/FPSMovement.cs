@@ -20,21 +20,15 @@ public class FPSMovement : MonoBehaviour
 
     public LayerMask layerMask;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, layerMask);
+        //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, layerMask);
 
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
+        //if (isGrounded && velocity.y < 0)
+        //{
+        //    velocity.y = -2f;
+        //}
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");

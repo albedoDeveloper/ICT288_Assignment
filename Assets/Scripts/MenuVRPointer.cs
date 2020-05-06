@@ -21,7 +21,7 @@ public class MenuVRPointer : MonoBehaviour
         {
             if (_hit.collider.CompareTag("Button"))
             {
-                SceneManager.LoadScene("Kye_Scene 1");
+                SceneManager.LoadScene("MasterScene");
                 _rgb = transform.GetComponent<RGBButton>();
                 _rgb.enabled = true;
             }

@@ -28,7 +28,6 @@ public class horn : MonoBehaviour
             if (transform.localPosition.x <= -17.60f)
                 hornPosition = 0;
         }
- 
     }
 
     private void OnMouseDown()
