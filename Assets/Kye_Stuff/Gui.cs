@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 public class Gui : MonoBehaviour {
 
     [HideInInspector]
@@ -14,12 +15,9 @@ public class Gui : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		timer = timer + 0.01f;
-		
-	}
+        timer += Time.deltaTime;
+        GetComponent<TextMeshProUGUI>().text = Math.Round(timer,1).ToString();
 
-	void OnGUI()
-	{
-		GUILayout.Label(Math.Round(timer,2).ToString());
-	}
+    }
+
 }
