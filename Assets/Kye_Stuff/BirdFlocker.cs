@@ -18,7 +18,10 @@ public class BirdFlocker : MonoBehaviour {
     {
         if (collider.tag == "Train" && !hasFlown)
         {
-            GetComponent<Collider>().enabled = false;
+            Debug.Log("Collides");
+
+            train.GetComponent<PathCreation.Examples.PathFollower>().speed = 0;
+            train.GetComponent<PathCreation.Examples.PathFollower>().enabled = false;
 
             if (horn.hornPosition == 1)
             {
@@ -27,6 +30,7 @@ public class BirdFlocker : MonoBehaviour {
                     if (bird != null)
                     {
                         bird.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-5f, 5.0f), Random.Range(1f, 5f), Random.Range(-5f, 5f)) * speed;
+                        train.GetComponent<PathCreation.Examples.PathFollower>().enabled = true;
                         hasFlown = true;
                     }
                 }
