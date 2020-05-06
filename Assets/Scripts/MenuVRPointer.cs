@@ -25,25 +25,26 @@ public class MenuVRPointer : MonoBehaviour
                 _rgb = _hit.collider.transform.GetComponent<RGBButton>();
                 if (_rgb != null)
                 {
-                    _rgb.Activate();
-                    _rgb.enabled = true;
+                    _rgb.ActivateColour();
+                    //_rgb.enabled = true;
                     if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButton(0))
                     {
-                        SceneManager.LoadScene("Kye_Scene 1");
+                        _rgb.ButtonClick();
                     }
                 }
             }
             else if (_rgb != null)
             {
-                _rgb.DeActivate();
-                _rgb.enabled = false;
+                _rgb.DeActivateColour();
+                //_rgb.enabled = false;
                 _rgb = null;
             }
         }
-        else
+        else if(_rgb != null)
         {
+            _rgb.DeActivateColour();
             //_rgb.enabled = false;
-            //_rgb = null;
+            _rgb = null;
         }
     }
 }
