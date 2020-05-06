@@ -5,6 +5,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class RGBButton : MonoBehaviour
@@ -12,6 +13,7 @@ public class RGBButton : MonoBehaviour
     private Renderer _renderer = null;
     public TextMeshProUGUI text;
     public bool activate = false;
+    public Button myButton;
 
     private void Start()
     {
@@ -25,27 +27,28 @@ public class RGBButton : MonoBehaviour
         {
             Color col = Color.Lerp(Color.cyan, Color.magenta, Mathf.Cos(Time.time * 10));
             _renderer.material.SetColor("_EmissionColor", col);
-            if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButton(0))
-            {
-                SceneManager.LoadScene("Kye_Scene 1");
-            }
-
         }
         else
         {
+            Debug.Log("TEST TEST TEST");
             Color col = Color.clear;
             _renderer.material.SetColor("_EmissionColor", col);
         }
     }
 
-    public void Activate()
+    public void ActivateColour()
     {
         activate = true;
     }
 
-    public void DeActivate()
+    public void DeActivateColour()
     {
         activate = false;
+    }
+
+    public void ButtonClick()
+    {
+        myButton.onClick.Invoke();
     }
 
 }
