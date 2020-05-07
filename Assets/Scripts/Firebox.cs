@@ -13,7 +13,6 @@ public class Firebox : MonoBehaviour
     [SerializeField] private float _maxTemp = 30;
     [SerializeField] TempGauge _tempGauge = null;
     [SerializeField] ParticleSystem _explosion = null;
-    [SerializeField] AudioSource _steamTrain = null;
     private Material _mat;
     private AudioSource _audio;
 
@@ -45,7 +44,6 @@ public class Firebox : MonoBehaviour
         if (_temperature < 0)
         {
             _temperature = 0;
-            _steamTrain.Stop();
         }
         else if (_temperature > _maxTemp)
         {
@@ -55,7 +53,7 @@ public class Firebox : MonoBehaviour
         SetEmissiveColour();
         _tempGauge.UpdatePointer(_temperature / _maxTemp);
 
-        //_temperature = 30;// DEBUG
+        _temperature = 30;// DEBUG
     }
 
     private void StopTrain()
