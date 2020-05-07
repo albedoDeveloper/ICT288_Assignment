@@ -8,7 +8,6 @@ public class BirdFlocker : MonoBehaviour {
     public GameObject train;
     public List<GameObject> birds;
     public float speed;
-    [SerializeField] private Firebox _firebox = null;
 
     [SerializeField]
     private horn horn = null;
@@ -34,10 +33,6 @@ public class BirdFlocker : MonoBehaviour {
                         hasFlown = true;
                     }
                 }
-            }
-            else
-            {
-                _firebox.SetTemperatute(0);
             }
         }
     }

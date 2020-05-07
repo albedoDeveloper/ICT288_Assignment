@@ -29,7 +29,7 @@ public class MenuVRPointer : MonoBehaviour
                     _rgb.enabled = true;
                     if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButton(0))
                     {
-                        SceneManager.LoadScene("Kye_Scene 1");
+                        SceneManager.LoadScene("MasterScene");
                     }
                 }
             }
