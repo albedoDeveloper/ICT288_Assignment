@@ -12,6 +12,7 @@ TagManager:
   - Button
   - Horn
   - Interactable
+  - Crossbow
   layers:
   - Default
   - TransparentFX

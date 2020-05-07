@@ -27,6 +27,8 @@ public class VRPointer : MonoBehaviour
     private bool _crossbowEquipped = false;
     private Transform _testTransform;
 
+    private Outline _previousOutline;
+
     private void Update()
     {
         PerformRaycast();
@@ -55,22 +57,43 @@ public class VRPointer : MonoBehaviour
             _didHit = Physics.Raycast(transform.position, transform.forward, out _hit);
         }
 
-        //adding Outline functionality here
-        if (_hit.collider.CompareTag("Horn"))
+        //if pointer hit a collider
+        if (_didHit)
         {
-            _hit.transform.GetComponent<Outline>().enabled = true;
-            _testTransform = _hit.transform;
-        }
-        else
-            if (_hit.collider.CompareTag("CoalPile"))
+            //if collider obj has outline script
+            if (_hit.collider.GetComponent<Outline>() != null)
             {
-                _hit.transform.GetComponent<Outline>().enabled = true;
-                _testTransform = _hit.transform;
+                //if obj is Horn 
+                if (_hit.collider.CompareTag("Horn"))
+                {
+                    _hit.collider.GetComponent<Outline>().enabled = true;
+                    _previousOutline = _hit.collider.GetComponent<Outline>();
+                }
+                //if obj is CoalPile 
+                if (_hit.collider.CompareTag("CoalPile"))
+                {
+                    _hit.collider.GetComponent<Outline>().enabled = true;
+                    _previousOutline = _hit.collider.GetComponent<Outline>();
+                }
+                //if obj is Crossbow
+                if (_hit.collider.CompareTag("Crossbow"))
+                {
+                    _hit.collider.GetComponent<Outline>().enabled = true;
+                    _previousOutline = _hit.collider.GetComponent<Outline>();
+                }
             }
             else
-                _testTransform.GetComponent<Outline>().enabled = false;
-        /************************************************************************/
+                if (_previousOutline != null)
+            {
+                _previousOutline.enabled = false;
+            }
 
+        }
+        else
+            if (_previousOutline != null)
+        {
+            _previousOutline.enabled = false;
+        }//end of Raycast Outline code
     }
 
     private void PickupItem()
@@ -92,8 +115,6 @@ public class VRPointer : MonoBehaviour
             }
         }
     }
-
-
 
     private void DropCrossbow()
     {
