@@ -11,7 +11,7 @@ public class FPSMouseLook : MonoBehaviour
 
     float xRotation = 0f;
 
-    public Camera myCamera;
+    //public Camera myCamera;
 
     public float jellyPressure;
 
@@ -19,7 +19,7 @@ public class FPSMouseLook : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        myCamera = Camera.main;
+        //myCamera = Camera.main;
     }
 
     // Update is called once per frame

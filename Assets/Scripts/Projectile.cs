@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.name == "Target")
+        if (collision.collider.GetComponent<Target>() != null)
         {
             collision.collider.GetComponent<Target>().Knock();
             Destroy(gameObject);
