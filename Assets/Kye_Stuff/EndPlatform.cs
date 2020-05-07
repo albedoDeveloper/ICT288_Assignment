@@ -6,6 +6,7 @@ using System;
 using UnityEngine.SceneManagement;
 public class EndPlatform : MonoBehaviour {
 
+    [SerializeField] private FPSMouseLook _mouseLook = null;
     public Gui scoreInfo;
     public GameObject showHighscore;
     public GameObject showSave;
@@ -24,25 +25,19 @@ public class EndPlatform : MonoBehaviour {
         //ShowLoadGame();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnTriggerStay(Collider collider)
     {
-
-        Cursor.lockState = CursorLockMode.None;
-
         if (collider.tag == "Train")
         {
-            
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            _mouseLook.enabled = false;
+
             train.GetComponent<PathCreation.Examples.PathFollower>().speed = 0;
             train.GetComponent<PathCreation.Examples.PathFollower>().enabled = false;
 
             showHighscore.SetActive(true);
-            
 
             if (stopClear)
             {
