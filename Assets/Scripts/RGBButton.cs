@@ -30,7 +30,6 @@ public class RGBButton : MonoBehaviour
         }
         else
         {
-            Debug.Log("TEST TEST TEST");
             Color col = Color.clear;
             _renderer.material.SetColor("_EmissionColor", col);
         }

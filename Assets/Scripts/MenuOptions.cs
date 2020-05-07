@@ -5,18 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuOptions : MonoBehaviour
 {
+    [SerializeField] private GameObject _instructionsCanvas = null;
+
     // Start is called before the first frame update
     public EndPlatform endPlatform;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void NewGame() 
     {
@@ -28,4 +20,8 @@ public class MenuOptions : MonoBehaviour
         endPlatform.ShowLoadGame();
     }
 
+    public void Instructions()
+    {
+        _instructionsCanvas.SetActive(true);
+    }
 }
