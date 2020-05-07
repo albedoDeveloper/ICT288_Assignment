@@ -12,13 +12,11 @@ public class MenuOptions : MonoBehaviour
 
     public void NewGame() 
     {
-        Debug.Log("TEST ETS TEST");
         SceneManager.LoadScene("MasterScene");
     }
 
     public void LoadGame()
     {
-        Debug.Log("BOLOLOLOLO");
         endPlatform.ShowLoadGame();
     }
 

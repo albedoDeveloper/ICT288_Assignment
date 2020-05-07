@@ -13,6 +13,11 @@ public class EndPlatform : MonoBehaviour {
     public TextMeshProUGUI displayScore;
     public GameObject train;
 
+    public GameObject VRCanvas;
+    public GameObject VRSave;
+    public GameObject VRLoad;
+    public TextMeshProUGUI VRDisplayScore;
+
     private bool stopClear = true;
     private bool stopAdd = false;
     // Use this for initialization
@@ -22,6 +27,15 @@ public class EndPlatform : MonoBehaviour {
         //PlayerPrefs.DeleteAll();
         //Cursor.lockState = CursorLockMode.None;
         //ShowLoadGame();
+
+        if(Application.platform == RuntimePlatform.Android)
+        {
+            
+            showSave = VRSave;
+            loadGame = VRLoad;
+            displayScore = VRDisplayScore;
+        }
+
     }
 
     // Update is called once per frame
@@ -41,7 +55,11 @@ public class EndPlatform : MonoBehaviour {
             train.GetComponent<PathCreation.Examples.PathFollower>().speed = 0;
             train.GetComponent<PathCreation.Examples.PathFollower>().enabled = false;
 
-            showHighscore.SetActive(true);
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                VRCanvas.SetActive(true);
+            }
+                showHighscore.SetActive(true);
             
 
             if (stopClear)
