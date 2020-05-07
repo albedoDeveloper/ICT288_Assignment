@@ -13,10 +13,12 @@ public class PlatformSwitcher : MonoBehaviour
 
     public GameObject menuCanvas;
 
+    public GameObject FPSController;
+    public GameObject VRController;
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(Application.platform + "ASKGHDLAGH:RFJLASHFSKAFJHASHL:LSAJF<>BHSLADFJSAK");
         platformText.text = ("Current Platform:" + Application.platform.ToString());
     }
 
@@ -25,26 +27,40 @@ public class PlatformSwitcher : MonoBehaviour
     {
         if(Application.platform == RuntimePlatform.Android)
         {
-            platformText.text = (Application.platform.ToString() + "WOOO HOOOOOOOOO");
+            platformText.text = ("Current Platform:" + Application.platform.ToString());
             EnableVRMode();
         }
         else
         {
-            platformText.text = (Application.platform.ToString() + ": I mean not the result we looking for but still works");
+            platformText.text = ("Current Platform:" + Application.platform.ToString());
             EnableFPSMode();
         }
     }
 
     public void EnableVRMode()
     {
-        if (menuCanvas.GetComponent<GraphicRaycaster>())
+        if (FPSController != null)
         {
-            menuCanvas.GetComponent<GraphicRaycaster>().enabled = false;
+            FPSController.SetActive(false);
         }
-        if (menuCanvas.GetComponent<OVRRaycaster>())
+
+        if (VRController != null)
         {
-            menuCanvas.GetComponent<OVRRaycaster>().enabled = true;
+            VRController.SetActive(true);
         }
+
+        if (menuCanvas != null)
+        {
+            if (menuCanvas.GetComponent<GraphicRaycaster>())
+            {
+                menuCanvas.GetComponent<GraphicRaycaster>().enabled = false;
+            }
+            if (menuCanvas.GetComponent<OVRRaycaster>())
+            {
+                menuCanvas.GetComponent<OVRRaycaster>().enabled = true;
+            }
+        }
+        
 
         VREventSystem.SetActive(true);
         FPSEventSystem.SetActive(false);
@@ -52,14 +68,28 @@ public class PlatformSwitcher : MonoBehaviour
 
     public void EnableFPSMode()
     {
-        if (menuCanvas.GetComponent<GraphicRaycaster>())
+        if (FPSController != null)
         {
-            menuCanvas.GetComponent<GraphicRaycaster>().enabled = true;
+            FPSController.SetActive(true);
         }
-        if (menuCanvas.GetComponent<OVRRaycaster>())
+
+        if (VRController != null)
         {
-            menuCanvas.GetComponent<OVRRaycaster>().enabled = false;
+            VRController.SetActive(false);
         }
+
+        if (menuCanvas != null)
+        {
+            if (menuCanvas.GetComponent<GraphicRaycaster>())
+            {
+                menuCanvas.GetComponent<GraphicRaycaster>().enabled = true;
+            }
+            if (menuCanvas.GetComponent<OVRRaycaster>())
+            {
+                menuCanvas.GetComponent<OVRRaycaster>().enabled = false;
+            }
+        }
+         
         VREventSystem.SetActive(false);
         FPSEventSystem.SetActive(true);
     }
