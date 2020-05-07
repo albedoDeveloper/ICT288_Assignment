@@ -2,8 +2,6 @@
  * Author: Robert Valentic
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -20,7 +18,7 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.name == "Target")
+        if (collision.collider.GetComponent<Target>() != null)
         {
             collision.collider.GetComponent<Target>().Knock();
             Destroy(gameObject);

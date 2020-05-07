@@ -11,6 +11,7 @@ TagManager:
   - CoalPile
   - Button
   - Horn
+  - Target
   layers:
   - Default
   - TransparentFX

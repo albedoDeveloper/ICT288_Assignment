@@ -25,7 +25,7 @@ public class MenuVRPointer : MonoBehaviour
                 _rgb = _hit.collider.transform.GetComponent<RGBButton>();
                 if (_rgb != null)
                 {
-                    _rgb.Activate();
+                    _rgb.ActivateColour();
                     _rgb.enabled = true;
                     if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButton(0))
                     {
@@ -35,7 +35,7 @@ public class MenuVRPointer : MonoBehaviour
             }
             else if (_rgb != null)
             {
-                _rgb.DeActivate();
+                _rgb.DeActivateColour();
                 _rgb.enabled = false;
                 _rgb = null;
             }
