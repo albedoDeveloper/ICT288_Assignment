@@ -49,7 +49,6 @@ public class CharacterInteraction : MonoBehaviour
     {
         if ((OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad) || Input.GetKeyDown(KeyCode.Space)) && _crossbowEquipped)
         {
-            Debug.Log("DropItem");
             DropCrossbow();
         }
     }

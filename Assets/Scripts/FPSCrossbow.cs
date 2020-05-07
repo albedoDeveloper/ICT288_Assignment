@@ -12,10 +12,12 @@ public class FPSCrossbow : MonoBehaviour
     [SerializeField] private GameObject _projectile = null;
     private bool _reloaded = false;
     private Animator _animator = null;
+    private AudioSource _as;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _as = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -37,6 +39,7 @@ public class FPSCrossbow : MonoBehaviour
         _animator.SetTrigger("Shoot");
         _reloaded = false;
         LaunchBolt();
+        _as.Play();
     }
 
     private void LaunchBolt()

@@ -13,11 +13,14 @@ public class Firebox : MonoBehaviour
     [SerializeField] private float _maxTemp = 30;
     [SerializeField] TempGauge _tempGauge = null;
     [SerializeField] ParticleSystem _explosion = null;
+    [SerializeField] AudioSource _steamTrain = null;
     private Material _mat;
+    private AudioSource _audio;
 
     private void Start()
     {
         _mat = GetComponent<Renderer>().material;
+        _audio = GetComponent<AudioSource>();
     }
 
     public void SetTemperatute(float temp)
@@ -31,6 +34,7 @@ public class Firebox : MonoBehaviour
         {
             Destroy(other.gameObject);
             _temperature += 10;
+            _audio.Play();
         }
     }
 
@@ -41,6 +45,7 @@ public class Firebox : MonoBehaviour
         if (_temperature < 0)
         {
             _temperature = 0;
+            _steamTrain.Stop();
         }
         else if (_temperature > _maxTemp)
         {
@@ -49,6 +54,7 @@ public class Firebox : MonoBehaviour
         }
         SetEmissiveColour();
         _tempGauge.UpdatePointer(_temperature / _maxTemp);
+
         //_temperature = 30;// DEBUG
     }
 

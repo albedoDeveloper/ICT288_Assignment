@@ -23,7 +23,8 @@ public class Projectile : MonoBehaviour
         if (collision.collider.GetComponent<Target>() != null)
         {
             collision.collider.GetComponent<Target>().Knock();
-            Destroy(gameObject);
+            GetComponent<AudioSource>().Play();
+            Destroy(gameObject, 3);
         }
     }
 }
