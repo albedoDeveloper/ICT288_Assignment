@@ -30,6 +30,8 @@ public class CharacterInteraction : MonoBehaviour
     private bool _pickupThisFrame = false;
     private bool _crossbowEquipped = false;
 
+    private Outline _previousOutline;
+
     private void Update()
     {
         PerformRaycast();
@@ -59,6 +61,44 @@ public class CharacterInteraction : MonoBehaviour
             if (_pcCamera == null)
             {
                 _didHit = Physics.Raycast(transform.position, transform.forward, out _hit);
+
+                //Outline code VR
+                //if pointer hit a collider
+                if (_didHit)
+                {
+                    //if collider obj has outline script
+                    if (_hit.collider.GetComponent<Outline>() != null)
+                    {
+                        //if obj is Horn 
+                        if (_hit.collider.CompareTag("Horn"))
+                        {
+                            _hit.collider.GetComponent<Outline>().enabled = true;
+                            _previousOutline = _hit.collider.GetComponent<Outline>();
+                        }
+                        //if obj is CoalPile 
+                        if (_hit.collider.CompareTag("CoalPile"))
+                        {
+                            _hit.collider.GetComponent<Outline>().enabled = true;
+                            _previousOutline = _hit.collider.GetComponent<Outline>();
+                        }
+                        //if obj is Crossbow
+                        if (_hit.collider.CompareTag("Crossbow"))
+                        {
+                            _hit.collider.GetComponent<Outline>().enabled = true;
+                            _previousOutline = _hit.collider.GetComponent<Outline>();
+                        }
+                    }
+                    else
+                        if (_previousOutline != null)
+                        {
+                            _previousOutline.enabled = false;
+                        }
+                }
+                else
+                    if (_previousOutline != null)
+                {
+                    _previousOutline.enabled = false;
+                }//end of Raycast Outline code
             }
             else
             {
