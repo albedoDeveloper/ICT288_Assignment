@@ -11,6 +11,7 @@ TagManager:
   - CoalPile
   - Button
   - Horn
+  - Crossbow
   layers:
   - Default
   - TransparentFX
