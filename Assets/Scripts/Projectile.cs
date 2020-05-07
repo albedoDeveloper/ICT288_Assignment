@@ -9,6 +9,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _speed = 15;
+    [SerializeField] private AudioSource _niceShot;
     private Rigidbody _rb = null;
 
     private void Start()
@@ -24,6 +25,7 @@ public class Projectile : MonoBehaviour
         {
             collision.collider.GetComponent<Target>().Knock();
             GetComponent<AudioSource>().Play();
+            _niceShot.Play();
             Destroy(gameObject, 3);
         }
     }
