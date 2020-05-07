@@ -12,6 +12,7 @@ public class CrateStack : MonoBehaviour
         {
             _fireBox.SetTemperatute(0);
             this.GetComponent<SphereCollider>().enabled = false;
+            GetComponent<AudioSource>().Play();
         }
     }
 }
