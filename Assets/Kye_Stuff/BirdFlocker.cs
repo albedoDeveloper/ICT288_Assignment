@@ -17,8 +17,6 @@ public class BirdFlocker : MonoBehaviour {
     {
         if (collider.tag == "Train" && !hasFlown)
         {
-            Debug.Log("Collides");
-
             train.GetComponent<PathCreation.Examples.PathFollower>().speed = 0;
             train.GetComponent<PathCreation.Examples.PathFollower>().enabled = false;
 
@@ -32,6 +30,7 @@ public class BirdFlocker : MonoBehaviour {
                         train.GetComponent<PathCreation.Examples.PathFollower>().enabled = true;
                         hasFlown = true;
                     }
+                    Destroy(bird, 10);
 
                 }
 
