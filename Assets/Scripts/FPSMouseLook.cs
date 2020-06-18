@@ -19,6 +19,7 @@ public class FPSMouseLook : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         //myCamera = Camera.main;
     }
 

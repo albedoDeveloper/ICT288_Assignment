@@ -51,7 +51,7 @@ public class EndPlatform : MonoBehaviour {
 
         if (collider.tag == "Train")
         {
-            
+            Cursor.visible = true;
             train.GetComponent<PathCreation.Examples.PathFollower>().speed = 0;
             train.GetComponent<PathCreation.Examples.PathFollower>().enabled = false;
 
