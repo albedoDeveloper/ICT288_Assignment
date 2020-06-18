@@ -126,6 +126,14 @@ public class EndPlatform : MonoBehaviour {
         SceneManager.LoadScene(0);
     }
 
+    public void NextLevel()
+    {
+        showHighscore.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+
     public void SaveGame()
     { 
         showHighscore.SetActive(false);
