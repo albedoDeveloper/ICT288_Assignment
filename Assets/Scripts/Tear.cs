@@ -1,0 +1,34 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Tear : MonoBehaviour
+{
+    bool startFall = false;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        StartCoroutine("TearFall");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(startFall)
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.05f, transform.position.z);
+    }
+
+    IEnumerator TearFall()
+    {
+        while (transform.localScale.z <= 0.1)
+        {
+            transform.localScale = new Vector3(transform.localScale.x + 0.001f, transform.localScale.y + 0.001f, transform.localScale.z + + 0.001f);
+
+            yield return null;
+
+        }
+
+        startFall = true;
+    }
+}
