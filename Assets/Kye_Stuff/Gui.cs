@@ -7,6 +7,10 @@ public class Gui : MonoBehaviour {
 
     [HideInInspector]
     public float timer = 0;
+
+    [SerializeField]
+    private EndPlatform endOFLevel = null;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,9 +19,11 @@ public class Gui : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-        timer += Time.deltaTime;
-        GetComponent<TextMeshProUGUI>().text = Math.Round(timer,1).ToString();
-
+        if (endOFLevel.finishedGame != true)
+        {
+            timer += Time.deltaTime;
+            GetComponent<TextMeshProUGUI>().text = Math.Round(timer, 1).ToString();
+        }
     }
 
 }

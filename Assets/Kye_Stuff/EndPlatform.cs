@@ -20,6 +20,9 @@ public class EndPlatform : MonoBehaviour {
 
     private bool stopClear = true;
     private bool stopAdd = false;
+
+    [HideInInspector]
+    public bool finishedGame = false;
     // Use this for initialization
 
     void Start()
@@ -46,12 +49,14 @@ public class EndPlatform : MonoBehaviour {
 
     void OnTriggerStay(Collider collider)
     {
-
+        var currentLevel = SceneManager.GetActiveScene().buildIndex.ToString();
         Cursor.lockState = CursorLockMode.None;
 
         if (collider.tag == "Train")
         {
             Cursor.visible = true;
+            finishedGame = true;
+
             train.GetComponent<PathCreation.Examples.PathFollower>().speed = 0;
             train.GetComponent<PathCreation.Examples.PathFollower>().enabled = false;
 
@@ -64,36 +69,36 @@ public class EndPlatform : MonoBehaviour {
 
             if (stopClear)
             {
-                displayScore.text = "Highscores";
+                displayScore.text = "Highscores for level" + currentLevel;
 
                 for (int i = 0; i < 5 && !stopAdd; i++)
                 {
-                    if (PlayerPrefs.HasKey(i.ToString()))
+                    if (PlayerPrefs.HasKey(i.ToString() + currentLevel))
                     {
-                        if (scoreInfo.timer < float.Parse(PlayerPrefs.GetString(i.ToString())))
+                        if (scoreInfo.timer < float.Parse(PlayerPrefs.GetString(i.ToString() + currentLevel)))
                         {
                             Debug.Log(i);
-                            for (int j = PlayerPrefs.GetInt("TotalSize"); j > i; j--)
+                            for (int j = PlayerPrefs.GetInt("TotalSize" + currentLevel); j > i; j--)
                             {
                                 if (j < 5)
                                 {
 
-                                    PlayerPrefs.SetString((j).ToString(), (PlayerPrefs.GetString((j - 1).ToString())));
+                                    PlayerPrefs.SetString((j).ToString() + currentLevel, PlayerPrefs.GetString((j - 1).ToString() + currentLevel));
 
-                                    if (j == PlayerPrefs.GetInt("TotalSize"))
-                                        PlayerPrefs.SetInt("TotalSize", PlayerPrefs.GetInt("TotalSize") + 1);
+                                    if (j == PlayerPrefs.GetInt("TotalSize" + currentLevel))
+                                        PlayerPrefs.SetInt("TotalSize" + currentLevel, PlayerPrefs.GetInt("TotalSize" + currentLevel) + 1);
                                 }
                             }
 
-                            PlayerPrefs.SetString(i.ToString(), scoreInfo.timer.ToString());
+                            PlayerPrefs.SetString(i.ToString() + currentLevel, scoreInfo.timer.ToString());
                             stopAdd = true;
                         }
                     }
 
                     else
                     {
-                        PlayerPrefs.SetString(i.ToString(), scoreInfo.timer.ToString());
-                        PlayerPrefs.SetInt("TotalSize", i + 1);
+                        PlayerPrefs.SetString(i.ToString() + currentLevel, scoreInfo.timer.ToString());
+                        PlayerPrefs.SetInt("TotalSize" + currentLevel, i + 1);
                         stopAdd = true;
 
                     }
@@ -101,9 +106,9 @@ public class EndPlatform : MonoBehaviour {
 
                 }
 
-                for (int i = 0; i < PlayerPrefs.GetInt("TotalSize"); i++)
+                for (int i = 0; i < PlayerPrefs.GetInt("TotalSize" + currentLevel); i++)
                 {
-                    displayScore.text = displayScore.text + "\n" + (i + 1).ToString() + ": " + Math.Round(Convert.ToDecimal(PlayerPrefs.GetString(i.ToString())), 2);
+                    displayScore.text = displayScore.text + "\n" + (i + 1).ToString() + ": " + Math.Round(Convert.ToDecimal(PlayerPrefs.GetString(i.ToString() + currentLevel)), 2);
                 }
 
                 stopClear = false;
