@@ -1,30 +1,72 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using System.Runtime.CompilerServices;
+
+[System.Serializable]
+struct WaveInfo
+{
+    public int numOfBarrels;
+    public int barrelSpeed;
+    public float spawnRate;
+}
 
 public class BarrelSpawner : MonoBehaviour
 {
     [SerializeField] GameObject _barrelPrefab;
     [SerializeField] Transform[] _spawnPoints;
-    short _currentWave = 1;
-    float _spawnInterval = 4;
+    [SerializeField] WaveInfo[] _waves;
+    [SerializeField] GameObject _waveBar;
+    int _currentWave = 1;
+    int _barrelsLeft;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("SpawnBarrel");
+        StartCoroutine("SpawnBarrels");
+        Debug.Log("Wave " + _currentWave + " started");
     }
 
-
-
-    IEnumerator SpawnBarrel()
+    void UpdateWaveBarGUI()
     {
+        _waveBar.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "WAVE: " + _currentWave;
+        _waveBar.GetComponent<Slider>().value = _currentWave;
+    }
+
+    IEnumerator FinishWave()
+    {
+        Debug.Log("Wave " + _currentWave + " complete");
+        yield return new WaitForSeconds(5);
+        _currentWave++;
+        UpdateWaveBarGUI();
+        Debug.Log("Wave " + _currentWave + " started");
+        StartCoroutine("SpawnBarrels");
+    }
+
+    IEnumerator SpawnBarrels()
+    {
+        _barrelsLeft = _waves[_currentWave-1].numOfBarrels;
+
         while (true)
         {
             int index = Random.Range(0, _spawnPoints.Length);
-            Instantiate(_barrelPrefab, _spawnPoints[index]);
-            yield return new WaitForSeconds(_spawnInterval);
-            _spawnInterval -= 0.4f;
+            GameObject obj = Instantiate(_barrelPrefab, _spawnPoints[index]);
+            Barrel b = obj.GetComponent<Barrel>();
+            if (b != null)
+            {
+                b.InitialPush(_waves[_currentWave-1].barrelSpeed);
+            }
+            _barrelsLeft--;
+            if (_barrelsLeft <= 0)
+            {
+                yield return new WaitForSeconds(18);
+                StartCoroutine("FinishWave");
+                StopCoroutine("SpawnBarrels");
+            }
+            yield return new WaitForSeconds(_waves[_currentWave-1].spawnRate);
         }
     }
 }

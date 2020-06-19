@@ -4,19 +4,36 @@ using UnityEngine;
 
 public class Barrel : MonoBehaviour
 {
-    GameObject _mesh = null;
     Rigidbody _rb = null;
+    int _health = 1;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        _mesh = transform.Find("Mesh").gameObject;
         _rb = GetComponent<Rigidbody>();
-        PushForward(500);
+    }
+
+    public void InitialPush(int force)
+    {
+        PushForward(force);
     }
 
     void PushForward(float force)
     {
         _rb.AddForce(transform.forward * Time.deltaTime * force, ForceMode.Impulse);
+    }
+
+    public void TakeDamage(int amount)
+    {
+        _health -= amount;
+        if (_health <= 0)
+        {
+            GameObject manager = GameObject.Find("Level3Manager");
+            if (manager != null)
+            {
+                manager.GetComponent<Level3Manager>().AddCash(50);
+            }
+            Destroy(gameObject);
+        }
     }
 }

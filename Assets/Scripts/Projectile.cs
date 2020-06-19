@@ -4,6 +4,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -33,12 +34,21 @@ public class Projectile : MonoBehaviour
         {
             DispPointText(10, transform.position);
             Destroy(gameObject);
-            Destroy(collision.collider.gameObject);
+            collision.collider.GetComponent<Barrel>().TakeDamage(1); // TODO pass in variable
+        }
+        else if (collision.collider.GetComponent<Powerup>() != null)
+        {
+            collision.collider.GetComponent<Powerup>().Purchase();
         }
     }
 
     void DispPointText(int points, Vector3 pointInWorld)
     {
-        Instantiate(_floatingTextPrefab, pointInWorld, Quaternion.identity);
+        GameObject obj = Instantiate(_floatingTextPrefab, pointInWorld, Quaternion.identity);
+        FloatingText ft = obj.GetComponent<FloatingText>();
+        if (ft != null)
+        {
+            //ft.SetText(points); // TODO this is causing an elusive error
+        }
     }
 }
