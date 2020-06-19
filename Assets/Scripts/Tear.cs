@@ -16,14 +16,17 @@ public class Tear : MonoBehaviour
     void Update()
     {
         if(startFall)
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.05f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y - (2f * Time.deltaTime), transform.position.z);
     }
 
     IEnumerator TearFall()
     {
+        var tearGrowSpeed = 0.055f * Time.deltaTime;
+
         while (transform.localScale.z <= 0.1)
         {
-            transform.localScale = new Vector3(transform.localScale.x + 0.001f, transform.localScale.y + 0.001f, transform.localScale.z + + 0.001f);
+
+            transform.localScale = new Vector3(transform.localScale.x + tearGrowSpeed, transform.localScale.y + tearGrowSpeed, transform.localScale.z + tearGrowSpeed);
 
             yield return null;
 
