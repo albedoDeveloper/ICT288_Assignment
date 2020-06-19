@@ -86,6 +86,14 @@ public class CharacterInteraction : MonoBehaviour
                             _hit.collider.GetComponent<Outline>().enabled = true;
                             _previousOutline = _hit.collider.GetComponent<Outline>();
                         }
+                        //if obj is FuseBox
+                        /*
+                        if(_hit.collider.CompareTag("FuseBox"))
+                        {
+                            _hit.collider.GetComponent<Outline>().enabled = true;
+                            _previousOutline = _hit.collider.GetComponent<Outline>();
+                        }
+                        */
                     }
                     else
                         if (_previousOutline != null)

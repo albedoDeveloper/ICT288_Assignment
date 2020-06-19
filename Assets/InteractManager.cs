@@ -47,6 +47,14 @@ public class InteractManager : MonoBehaviour
                     _hit.collider.GetComponent<Outline>().enabled = true;
                     _previousOutline = _hit.collider.GetComponent<Outline>();
                 }
+                //if obj is Fusebox
+                /*
+                if(_hit.collider.CompareTag("FuseBox"))
+                {
+                    _hit.collider.GetComponent<Outline>().enabled = true;
+                    _previousOutline = _hit.collider.GetComponent<Outline>();
+                }
+                */
             }
             else
                 if (_previousOutline != null)
