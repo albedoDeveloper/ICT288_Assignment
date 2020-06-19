@@ -98,7 +98,7 @@ public class CutSceneOneStart : MonoBehaviour
 
         }
 
-        if ((Input.GetKeyDown(KeyCode.E) || OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) && (displayText != 9 || displayText != 0))
+        if ((Input.GetKeyDown(KeyCode.E) || OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) && (displayText != 9 && displayText != 0))
         {
             displayText++;
         }
