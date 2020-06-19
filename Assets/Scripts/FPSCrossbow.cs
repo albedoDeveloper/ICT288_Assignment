@@ -4,12 +4,15 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FPSCrossbow : MonoBehaviour
 {
-    [SerializeField] private GameObject _boltModel = null;
-    [SerializeField] private GameObject _projectile = null;
+    [SerializeField] GameObject _boltModel;
+    [SerializeField] GameObject _projectile;
+    [SerializeField] GameObject _powerupBar;
     bool _reloaded = false;
     Animator _animator = null;
     AudioSource _as;
@@ -29,15 +32,29 @@ public class FPSCrossbow : MonoBehaviour
             case Powerup.PowerupType.SCATTER:
                 _powerupTimer = 10;
                 _activePowerup = Powerup.PowerupType.SCATTER;
+                _powerupBar.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "Scatter Shot";
                 Debug.Log("Scatter shot activated");
                 break;
         }
+
+        _powerupBar.SetActive(true);
     }
 
     void Update()
     {
         PowerupCountdown();
         TryFire();
+        TickPowerupBar();
+    }
+
+    void TickPowerupBar()
+    {
+        _powerupBar.GetComponent<Slider>().value = _powerupTimer;
+
+        if (_powerupTimer <= 0)
+        {
+            _powerupBar.SetActive(false);
+        }
     }
 
     void PowerupCountdown()
@@ -51,8 +68,6 @@ public class FPSCrossbow : MonoBehaviour
                 _activePowerup = Powerup.PowerupType.NONE;
             }
         }
-
-        //Debug.Log("Powerup time left: " + _powerupTimer);
     }
 
     void TryFire()
@@ -82,7 +97,22 @@ public class FPSCrossbow : MonoBehaviour
 
     void FireScatterShot()
     {
-        Debug.Log("Scatter shot fired");
+        _boltModel.SetActive(false);
+        _animator.SetTrigger("Shoot");
+        _reloaded = false;
+        LaunchTripleBolt();
+        _as.Play();
+    }
+
+    void LaunchTripleBolt()
+    {
+        const float ANGLE = 5;
+
+        Instantiate(_projectile, _boltModel.transform.position, _boltModel.transform.rotation);
+        GameObject left = Instantiate(_projectile, _boltModel.transform.position, _boltModel.transform.rotation);
+        GameObject right = Instantiate(_projectile, _boltModel.transform.position, _boltModel.transform.rotation);
+        left.transform.Rotate(left.transform.up, ANGLE, Space.World);
+        right.transform.Rotate(right.transform.up, -ANGLE, Space.World);
     }
 
     void LaunchBolt()

@@ -39,6 +39,7 @@ public class Projectile : MonoBehaviour
         else if (collision.collider.GetComponent<Powerup>() != null)
         {
             collision.collider.GetComponent<Powerup>().Purchase();
+            Destroy(gameObject);
         }
     }
 
