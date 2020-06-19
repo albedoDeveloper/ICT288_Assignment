@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
         {
             DispPointText(10, transform.position);
             Destroy(gameObject);
-            Destroy(collision.collider.gameObject, 5);
+            Destroy(collision.collider.gameObject);
         }
     }
 
