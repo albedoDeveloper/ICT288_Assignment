@@ -20,12 +20,21 @@ public class BarrelSpawner : MonoBehaviour
     [SerializeField] Transform[] _spawnPoints;
     [SerializeField] WaveInfo[] _waves;
     [SerializeField] GameObject _waveBar;
+    [SerializeField] AudioClip[] _clips;
     int _currentWave = 1;
     int _barrelsLeft;
+    AudioSource _audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+        StartCoroutine("StartDelay");
+    }
+
+    IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(2);
         StartCoroutine("SpawnBarrels");
         Debug.Log("Wave " + _currentWave + " started");
     }
@@ -48,6 +57,9 @@ public class BarrelSpawner : MonoBehaviour
 
     IEnumerator SpawnBarrels()
     {
+        _audioSource.clip = _clips[_currentWave - 1];
+        _audioSource.Play();
+
         _barrelsLeft = _waves[_currentWave-1].numOfBarrels;
 
         while (true)
@@ -62,7 +74,7 @@ public class BarrelSpawner : MonoBehaviour
             _barrelsLeft--;
             if (_barrelsLeft <= 0)
             {
-                yield return new WaitForSeconds(18);
+                yield return new WaitForSeconds(10);
                 StartCoroutine("FinishWave");
                 StopCoroutine("SpawnBarrels");
             }

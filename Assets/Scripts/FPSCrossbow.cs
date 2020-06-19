@@ -35,6 +35,12 @@ public class FPSCrossbow : MonoBehaviour
                 _powerupBar.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "Scatter Shot";
                 Debug.Log("Scatter shot activated");
                 break;
+            case Powerup.PowerupType.RAPIDFIRE:
+                _powerupTimer = 10;
+                _activePowerup = Powerup.PowerupType.RAPIDFIRE;
+                _powerupBar.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "Rapid Fire";
+                _animator.speed = 2;
+                break;
         }
 
         _powerupBar.SetActive(true);
@@ -54,6 +60,7 @@ public class FPSCrossbow : MonoBehaviour
         if (_powerupTimer <= 0)
         {
             _powerupBar.SetActive(false);
+            _animator.speed = 1;
         }
     }
 
@@ -79,6 +86,7 @@ public class FPSCrossbow : MonoBehaviour
                 case Powerup.PowerupType.SCATTER:
                     FireScatterShot();
                     break;
+                case Powerup.PowerupType.RAPIDFIRE:
                 case Powerup.PowerupType.NONE:
                     FireNormalShot();
                     break;

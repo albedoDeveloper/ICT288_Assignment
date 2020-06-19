@@ -5,7 +5,7 @@ using TMPro;
 
 public class Powerup : MonoBehaviour
 {
-    public enum PowerupType { NONE, SCATTER };
+    public enum PowerupType { NONE, SCATTER, RAPIDFIRE};
 
     [SerializeField] Level3Manager _lvl3Man;
     [SerializeField] FPSCrossbow _crossbow;
