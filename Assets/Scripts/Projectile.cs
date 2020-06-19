@@ -8,8 +8,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float _speed = 15;
-    [SerializeField] private AudioSource _niceShot;
+    [SerializeField] float _speed = 15;
+    [SerializeField] AudioSource _niceShot;
+    [SerializeField] GameObject _floatingTextPrefab;
     private Rigidbody _rb = null;
 
     private void Start()
@@ -26,7 +27,18 @@ public class Projectile : MonoBehaviour
             collision.collider.GetComponent<Target>().Knock();
             GetComponent<AudioSource>().Play();
             _niceShot.Play();
-            Destroy(gameObject, 3);
+            Destroy(gameObject);
         }
+        else if (collision.collider.GetComponent<Barrel>() != null)
+        {
+            DispPointText(10, transform.position);
+            Destroy(gameObject);
+            Destroy(collision.collider.gameObject, 5);
+        }
+    }
+
+    void DispPointText(int points, Vector3 pointInWorld)
+    {
+        Instantiate(_floatingTextPrefab, pointInWorld, Quaternion.identity);
     }
 }
