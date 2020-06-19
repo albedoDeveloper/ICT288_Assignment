@@ -4,36 +4,89 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FPSCrossbow : MonoBehaviour
 {
-    [SerializeField] private GameObject _boltModel = null;
-    [SerializeField] private GameObject _projectile = null;
-    private bool _reloaded = false;
-    private Animator _animator = null;
-    private AudioSource _as;
+    [SerializeField] GameObject _boltModel;
+    [SerializeField] GameObject _projectile;
+    [SerializeField] GameObject _powerupBar;
+    bool _reloaded = false;
+    Animator _animator = null;
+    AudioSource _as;
+    Powerup.PowerupType _activePowerup = Powerup.PowerupType.NONE;
+    float _powerupTimer;
 
-    private void Start()
+    void Start()
     {
         _animator = GetComponent<Animator>();
         _as = GetComponent<AudioSource>();
     }
 
-    private void Update()
+    public void ActivatePowerup(Powerup.PowerupType type)
     {
-        TryFire();
+        switch (type)
+        {
+            case Powerup.PowerupType.SCATTER:
+                _powerupTimer = 10;
+                _activePowerup = Powerup.PowerupType.SCATTER;
+                _powerupBar.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "Scatter Shot";
+                Debug.Log("Scatter shot activated");
+                break;
+        }
+
+        _powerupBar.SetActive(true);
     }
 
-    private void TryFire()
+    void Update()
     {
-        if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButtonDown(0)) && _reloaded)
+        PowerupCountdown();
+        TryFire();
+        TickPowerupBar();
+    }
+
+    void TickPowerupBar()
+    {
+        _powerupBar.GetComponent<Slider>().value = _powerupTimer;
+
+        if (_powerupTimer <= 0)
         {
-            Fire();
+            _powerupBar.SetActive(false);
         }
     }
 
-    private void Fire()
+    void PowerupCountdown()
+    {
+        if (_activePowerup != Powerup.PowerupType.NONE)
+        {
+            _powerupTimer -= 1 * Time.deltaTime;
+            if (_powerupTimer <= 0)
+            {
+                _powerupTimer = 0;
+                _activePowerup = Powerup.PowerupType.NONE;
+            }
+        }
+    }
+
+    void TryFire()
+    {
+        if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButtonDown(0)) && _reloaded)
+        {
+            switch (_activePowerup)
+            {
+                case Powerup.PowerupType.SCATTER:
+                    FireScatterShot();
+                    break;
+                case Powerup.PowerupType.NONE:
+                    FireNormalShot();
+                    break;
+            }
+        }
+    }
+
+    void FireNormalShot()
     {
         _boltModel.SetActive(false);
         _animator.SetTrigger("Shoot");
@@ -42,7 +95,27 @@ public class FPSCrossbow : MonoBehaviour
         _as.Play();
     }
 
-    private void LaunchBolt()
+    void FireScatterShot()
+    {
+        _boltModel.SetActive(false);
+        _animator.SetTrigger("Shoot");
+        _reloaded = false;
+        LaunchTripleBolt();
+        _as.Play();
+    }
+
+    void LaunchTripleBolt()
+    {
+        const float ANGLE = 5;
+
+        Instantiate(_projectile, _boltModel.transform.position, _boltModel.transform.rotation);
+        GameObject left = Instantiate(_projectile, _boltModel.transform.position, _boltModel.transform.rotation);
+        GameObject right = Instantiate(_projectile, _boltModel.transform.position, _boltModel.transform.rotation);
+        left.transform.Rotate(left.transform.up, ANGLE, Space.World);
+        right.transform.Rotate(right.transform.up, -ANGLE, Space.World);
+    }
+
+    void LaunchBolt()
     {
         Instantiate(_projectile, _boltModel.transform.position, _boltModel.transform.rotation);
     }
