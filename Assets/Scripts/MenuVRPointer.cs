@@ -28,7 +28,7 @@ public class MenuVRPointer : MonoBehaviour
                     _rgb.ActivateColour();
                     //_rgb.enabled = true;
                     if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButton(0))
-                    {
+                    { 
                         _rgb.ButtonClick();
                     }
                 }
