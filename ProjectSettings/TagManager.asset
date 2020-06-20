@@ -12,6 +12,7 @@ TagManager:
   - Button
   - Horn
   - Crossbow
+  - barrel
   layers:
   - Default
   - TransparentFX
