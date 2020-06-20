@@ -8,7 +8,7 @@ public class TrainHealth : MonoBehaviour
     short _healthPoints = 100;
     [SerializeField] Slider _sliderGUI;
 
-    void TakeDamage(short damage)
+    public void TakeDamage(short damage)
     {
         _healthPoints -= damage;
         if (_healthPoints <= 0)
