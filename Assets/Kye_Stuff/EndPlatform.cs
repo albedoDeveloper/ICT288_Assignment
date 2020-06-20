@@ -126,6 +126,14 @@ public class EndPlatform : MonoBehaviour {
         SceneManager.LoadScene(0);
     }
 
+    public void NextLevel()
+    {
+        showHighscore.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+
     public void SaveGame()
     { 
         showHighscore.SetActive(false);
@@ -134,7 +142,7 @@ public class EndPlatform : MonoBehaviour {
 
     public void SaveGameOne()
     {
-        PlayerPrefs.SetInt("SaveFileOne", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetInt("SaveFileOne", SceneManager.GetActiveScene().buildIndex + 1);
         showHighscore.SetActive(true);
         showSave.SetActive(false);
         Debug.Log(PlayerPrefs.HasKey("SaveFileOne"));
@@ -142,7 +150,7 @@ public class EndPlatform : MonoBehaviour {
 
     public void SaveGameTwo()
     {
-        PlayerPrefs.SetInt("SaveFileTwo", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetInt("SaveFileTwo", SceneManager.GetActiveScene().buildIndex + 1);
         showHighscore.SetActive(true);
         showSave.SetActive(false);
     }

@@ -21,7 +21,8 @@ public class GUIElements : MonoBehaviour
 
     private void OnGUI()
     {
-        int w = Screen.width, h = Screen.height;
+        var w = Screen.width;
+        var h = Screen.height;
 
         GUIStyle style = new GUIStyle();
 

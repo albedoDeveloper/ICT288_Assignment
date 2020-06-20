@@ -12,7 +12,7 @@ public class MenuOptions : MonoBehaviour
 
     public void NewGame() 
     {
-        SceneManager.LoadScene("MasterScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void LoadGame()
