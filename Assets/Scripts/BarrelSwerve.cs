@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BarrelSwerve : MonoBehaviour
+public class BarrelSwerve : Barrel
 {
     Rigidbody _rb = null;
     int _health = 1;
@@ -28,7 +28,7 @@ public class BarrelSwerve : MonoBehaviour
           jetty = GameObject.Find("BusseltonJetty");
     }
 
-    public void InitialPush(int force)
+    public new void InitialPush(int force)
     {
         this.force = force;
     }
