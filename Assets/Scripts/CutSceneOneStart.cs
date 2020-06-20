@@ -146,7 +146,7 @@ public class CutSceneOneStart : MonoBehaviour
         displayText++;
         if (re)
         {
-            talkingText.transform.position = new Vector3(gameObject.GetComponentInChildren<Camera>().transform.position.x + 25, gameObject.GetComponentInChildren<Camera>().transform.position.y - 2, gameObject.GetComponentInChildren<Camera>().transform.position.z - 15);
+            talkingText.transform.position = new Vector3(gameObject.GetComponentInChildren<Camera>().transform.position.x + 22, gameObject.GetComponentInChildren<Camera>().transform.position.y - 2, gameObject.GetComponentInChildren<Camera>().transform.position.z - 15);
             re = false;
 
         }
