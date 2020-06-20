@@ -4,6 +4,12 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.SceneManagement;
+
+
+/// <summary>
+///  Author: Kye Horbury
+/// 
+/// </summary>
 public class EndPlatform : MonoBehaviour {
 
     public Gui scoreInfo;
