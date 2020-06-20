@@ -16,7 +16,8 @@ public class BarrelSpawner : MonoBehaviour
     [SerializeField] GameObject _barrelPrefab;
     [SerializeField] Transform[] _spawnPoints;
     [SerializeField] WaveInfo[] _waves;
-    [SerializeField] GameObject _waveBar;
+    [SerializeField] GameObject _waveBarPC;
+    [SerializeField] GameObject _waveBarVR;
     [SerializeField] AudioClip[] _clips;
     int _currentWave = 1;
     int _barrelsLeft;
@@ -38,8 +39,16 @@ public class BarrelSpawner : MonoBehaviour
 
     void UpdateWaveBarGUI()
     {
-        _waveBar.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "WAVE: " + _currentWave;
-        _waveBar.GetComponent<Slider>().value = _currentWave;
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            _waveBarVR.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "WAVE: " + _currentWave;
+            _waveBarVR.GetComponent<Slider>().value = _currentWave;
+        }
+        else
+        {
+            _waveBarPC.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "WAVE: " + _currentWave;
+            _waveBarPC.GetComponent<Slider>().value = _currentWave;
+        }
     }
 
     IEnumerator FinishWave()

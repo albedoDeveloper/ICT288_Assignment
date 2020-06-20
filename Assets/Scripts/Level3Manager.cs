@@ -6,7 +6,8 @@ using TMPro;
 
 public class Level3Manager : MonoBehaviour
 {
-    [SerializeField] GameObject _cashBar;
+    [SerializeField] GameObject _cashbarVR;
+    [SerializeField] GameObject _cashbarPC;
 
     int _cash = 0;
 
@@ -18,8 +19,16 @@ public class Level3Manager : MonoBehaviour
 
     void UpdateCashGUI()
     {
-        _cashBar.GetComponent<Slider>().value = _cash;
-        _cashBar.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "$" + _cash;
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            _cashbarVR.GetComponent<Slider>().value = _cash;
+            _cashbarVR.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "$" + _cash;
+        }
+        else
+        {
+            _cashbarPC.GetComponent<Slider>().value = _cash;
+            _cashbarPC.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "$" + _cash;        
+        }
     }
 
     public int GetCash()
