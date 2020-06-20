@@ -43,6 +43,15 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.GetComponent<Coin>() != null)
+        {
+            Debug.Log("Dooby doo");
+            collision.GetComponent<Coin>().CollectCoin();
+        }
+    }
+
     void DispPointText(int points, Vector3 pointInWorld)
     {
         GameObject obj = Instantiate(_floatingTextPrefab, pointInWorld, Quaternion.identity);
