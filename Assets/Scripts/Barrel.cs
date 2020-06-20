@@ -20,7 +20,7 @@ public class Barrel : MonoBehaviour
 
     void PushForward(float force)
     {
-        _rb.AddForce(transform.forward * Time.deltaTime * force, ForceMode.Impulse);
+        _rb.AddForce(transform.forward * force, ForceMode.Impulse);
     }
 
     public virtual void TakeDamage(int amount)
