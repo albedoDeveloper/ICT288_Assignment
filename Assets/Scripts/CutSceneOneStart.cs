@@ -31,13 +31,14 @@ public class CutSceneOneStart : MonoBehaviour
 
     private uint displayText = 0;
 
-
+    private bool re = true;
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(MoveUp());
-        talkingText.transform.position = new Vector3(Screen.width / 2, Screen.height / 6, talkingText.transform.position.z);
+        talkingText.transform.position = new Vector3(gameObject.GetComponentInChildren<Camera>().transform.position.x + 20, gameObject.GetComponentInChildren<Camera>().transform.position.y - 5, gameObject.GetComponentInChildren<Camera>().transform.position.z - 2);
+            //new Vector3(Screen.width / 2, Screen.height / 6, talkingText.transform.position.z);
 
     }
 
@@ -53,16 +54,16 @@ public class CutSceneOneStart : MonoBehaviour
         switch (displayText)
         {
             case 1:
-                talkingText.text = "Fairuz the Dolphin: Finally you have arrived! Mr.Jetty Manager I desperately need your help! (Press E or the Trigger button to continue)";
+                talkingText.text = "Fairuz the Dolphin: Finally you have arrived!\nMr.Jetty Manager I desperately need your help!\n (Press E or the Trigger button to continue)";
                 break;
 
             case 2:
                 dolphinNoise.Play();
-                talkingText.text = "You: Sure th... Wait you are dolphin, how can I understand you??";
+                talkingText.text = "You: Sure th... \nWait you are dolphin, how can I understand you??";
                 break;
 
             case 3:
-                talkingText.text = "Fairuz the Dolphin: Don't worry about that now, my friends are in danger!";
+                talkingText.text = "Fairuz the Dolphin: Don't worry about that now, my\n friends are in danger!";
                 break;
 
             case 4:
@@ -71,21 +72,21 @@ public class CutSceneOneStart : MonoBehaviour
                 break;
 
             case 5:
-                talkingText.text = "Fairuz the Dolphin: My friends have be captured at the end of the jetty by the giant seagull, Robert the Terrible, and they need someone to rescue them! Will you be the hero we need?";
+                talkingText.text = "Fairuz the Dolphin: My friends have be captured at the\n end of the jetty by the giant seagull, Robert the Terrible,\n and they need someone to rescue them!\n Will you be the hero we need?";
                 break;
 
             case 6:
                 dolphinNoise.Play();
-                talkingText.text = "You: Sure thing! It something too serious for me to just ignore. But what can I do to help?";
+                talkingText.text = "You: Sure thing! It something too serious for me to just ignore.\n But what can I do to help?";
                 break;
 
             case 7:
-                talkingText.text = "Fairuz the Dolphin: Hmm you need to get there are fast as possible... I know! How about you take the jetty train, it will get you to the end way faster then walking! (Plus its cheap to ride too!)";
+                talkingText.text = "Fairuz the Dolphin: Hmm you need to get there are fast as possible...\n I know! How about you take the jetty train, \nit will get you to the end way faster then walking!\n (Plus its cheap to ride too!)";
                 break;
 
             case 8:
                 dolphinNoise.Play();
-                talkingText.text = "Okay, the train it is! Don't worry, I will save your friends!";
+                talkingText.text = "You: Okay, the train it is! Don't worry, I will save your friends!";
                 break;
 
             case 9:
@@ -98,7 +99,7 @@ public class CutSceneOneStart : MonoBehaviour
 
         }
 
-        if ((Input.GetKeyDown(KeyCode.E) || OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) && (displayText != 9 && displayText != 0))
+        if ((Input.GetKeyDown(KeyCode.E) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)) && displayText != 9 && displayText != 0)
         {
             displayText++;
         }
@@ -142,16 +143,23 @@ public class CutSceneOneStart : MonoBehaviour
 
     IEnumerator WaitForTear()
     {
+        displayText++;
+        if (re)
+        {
+            talkingText.transform.position = new Vector3(gameObject.GetComponentInChildren<Camera>().transform.position.x + 22, gameObject.GetComponentInChildren<Camera>().transform.position.y - 2, gameObject.GetComponentInChildren<Camera>().transform.position.z - 15);
+            re = false;
 
-        talkingText.text = "Please hurry, I miss my friends so much...";
-        dolphinNoise.Play();
+        }
+        talkingText.text = "Please hurry,\n I miss my friends so much...";
+        //dolphinNoise.Play();
+
         transform.position = new Vector3(dolphin.transform.position.x + 2.5f, dolphin.transform.position.y + 4.2f, dolphin.transform.position.z + 3.4f);
         Destroy(dolphin);
         dolphin = Instantiate(staticDolphin);
         transform.LookAt(new Vector3(dolphin.transform.position.x, dolphin.transform.position.y + 2f, dolphin.transform.position.z));
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1f);
         Instantiate(tear);
         yield return new WaitForSeconds(1.5f);
-        displayText++;
+
     }
 }

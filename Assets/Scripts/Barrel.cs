@@ -23,7 +23,7 @@ public class Barrel : MonoBehaviour
         _rb.AddForce(transform.forward * force, ForceMode.Impulse);
     }
 
-    public void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount)
     {
         _health -= amount;
         if (_health <= 0)

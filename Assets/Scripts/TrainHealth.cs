@@ -9,7 +9,7 @@ public class TrainHealth : MonoBehaviour
     [SerializeField] Slider _healthPC;
     [SerializeField] Slider _healthVR;
 
-    void TakeDamage(short damage)
+    public void TakeDamage(short damage)
     {
         _healthPoints -= damage;
         if (_healthPoints <= 0)

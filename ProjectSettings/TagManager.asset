@@ -13,6 +13,7 @@ TagManager:
   - Horn
   - Crossbow
   - barrel
+  - FPSCharacter
   layers:
   - Default
   - TransparentFX
