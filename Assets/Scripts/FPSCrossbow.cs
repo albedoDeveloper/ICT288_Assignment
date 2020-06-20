@@ -55,12 +55,15 @@ public class FPSCrossbow : MonoBehaviour
 
     void TickPowerupBar()
     {
-        _powerupBar.GetComponent<Slider>().value = _powerupTimer;
-
-        if (_powerupTimer <= 0)
+        if (_powerupBar != null)
         {
-            _powerupBar.SetActive(false);
-            _animator.speed = 1;
+            _powerupBar.GetComponent<Slider>().value = _powerupTimer;
+
+            if (_powerupTimer <= 0)
+            {
+                _powerupBar.SetActive(false);
+                _animator.speed = 1;
+            }
         }
     }
 

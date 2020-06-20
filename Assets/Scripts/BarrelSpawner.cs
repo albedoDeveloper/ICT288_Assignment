@@ -72,7 +72,7 @@ public class BarrelSpawner : MonoBehaviour
         {
             int index = Random.Range(0, _spawnPoints.Length);
             GameObject obj = Instantiate(_barrelPrefab, _spawnPoints[index]);
-            obj.GetComponent<CapsuleCollider>().material.bounciness = Random.Range(0.0f, 2.0f);
+            obj.GetComponent<CapsuleCollider>().material.bounciness = Random.Range(0.0f, 1.0f);
             Barrel b = obj.GetComponent<Barrel>();
             if (b != null)
             {
