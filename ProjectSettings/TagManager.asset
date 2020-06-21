@@ -12,7 +12,8 @@ TagManager:
   - Button
   - Horn
   - Crossbow
-  - FuseBox
+  - barrel
+  - FPSCharacter
   layers:
   - Default
   - TransparentFX
