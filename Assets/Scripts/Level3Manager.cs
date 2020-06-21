@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Level3Manager : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class Level3Manager : MonoBehaviour
     [SerializeField] GameObject _cashbarPC;
 
     int _cash = 0;
+
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
 
     public void AddCash(int amount)
     {
@@ -45,5 +51,10 @@ public class Level3Manager : MonoBehaviour
         }
 
         UpdateCashGUI();
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("Level3");
     }
 }
