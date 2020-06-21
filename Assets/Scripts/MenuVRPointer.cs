@@ -19,15 +19,17 @@ public class MenuVRPointer : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.forward, out _hit))
         {
+            Debug.Log("WHAT?" + _hit.collider.gameObject.name);
             if (_hit.collider.CompareTag("Button"))
             {
                 //SceneManager.LoadScene("Kye_Scene 1");
                 _rgb = _hit.collider.transform.GetComponent<RGBButton>();
                 if (_rgb != null)
                 {
+                    
                     _rgb.ActivateColour();
                     //_rgb.enabled = true;
-                    if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButton(0))
+                    if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButton(0))
                     { 
                         _rgb.ButtonClick();
                     }

@@ -47,7 +47,7 @@ public class RGBButton : MonoBehaviour
 
     public void ButtonClick()
     {
-        //myButton.onClick.Invoke();
+        myButton.onClick.Invoke();
     }
 
 }
