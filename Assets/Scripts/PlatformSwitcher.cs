@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class PlatformSwitcher : MonoBehaviour
@@ -13,8 +14,18 @@ public class PlatformSwitcher : MonoBehaviour
 
     public GameObject menuCanvas;
 
+    public OVRInputModule ovrInputModule;
+
     public GameObject FPSController;
     public GameObject VRController;
+
+    public GameObject leftHandAnchor;
+    public GameObject leftOVRController;
+    public GameObject leftPointerBeam;
+
+    public GameObject rightHandAnchor;
+    public GameObject rightOVRController;
+    public GameObject rightPointerBeam;
 
     // Start is called before the first frame update
     void Start()
@@ -92,5 +103,33 @@ public class PlatformSwitcher : MonoBehaviour
          
         VREventSystem.SetActive(false);
         FPSEventSystem.SetActive(true);
+    }
+
+    private void CheckHands()
+    {
+        if(leftHandAnchor != null && rightHandAnchor != null)
+        {
+            if (OVRInput.IsControllerConnected(OVRInput.Controller.LTrackedRemote))
+            {
+                leftOVRController.SetActive(true);
+                leftPointerBeam.SetActive(true);
+                if (VREventSystem != null)
+                    ovrInputModule.rayTransform = leftHandAnchor.transform;
+
+                rightOVRController.SetActive(false);
+                rightPointerBeam.SetActive(false);
+            }
+            else
+            {
+                rightOVRController.SetActive(true);
+                rightPointerBeam.SetActive(true);
+                if (VREventSystem != null)
+                    ovrInputModule.rayTransform = rightHandAnchor.transform;
+
+                leftOVRController.SetActive(false);
+                leftPointerBeam.SetActive(false);
+            }
+        }
+        
     }
 }
