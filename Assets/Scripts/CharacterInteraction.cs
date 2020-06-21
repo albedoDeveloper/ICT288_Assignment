@@ -32,12 +32,19 @@ public class CharacterInteraction : MonoBehaviour
 
     private Outline _previousOutline;
 
+    private bool _menuActive;
+    public GameObject loadGame;
+    public GameObject _VRCanvas;
+    public GameObject _VRLoad;
+    public GameObject _VRDisplayScore;
+
     private void Update()
     {
         PerformRaycast();
         PickupItem();
         PullHorn();
         DropItem();
+        MenuSelect();
         if (!_pickupThisFrame)
         {
             ThrowHeldItem();
@@ -47,7 +54,7 @@ public class CharacterInteraction : MonoBehaviour
 
     private void DropItem()
     {
-        if ((OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad) || Input.GetMouseButtonDown(1)) && _crossbowEquipped)
+        if ((OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad) || OVRInput.GetDown(OVRInput.Button.SecondaryTouchpad) ||  Input.GetMouseButtonDown(1)) && _crossbowEquipped)
         {
             DropCrossbow();
         }
@@ -110,7 +117,7 @@ public class CharacterInteraction : MonoBehaviour
     {
         if (_heldItem == null && _didHit)
         {
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButtonDown(0))
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButtonDown(0))
             {
                 if (_hit.collider.name == "CoalPile")
                 {
@@ -167,7 +174,7 @@ public class CharacterInteraction : MonoBehaviour
     {
         if (_heldItem != null)
         {
-            if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButtonDown(0)) && _heldItem.CompareTag("CoalPiece"))
+            if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButtonDown(0)) && _heldItem.CompareTag("CoalPiece"))
             {
                 _heldItem.transform.SetParent(_trainParent);
                 Rigidbody rb = _heldItem.GetComponent<Rigidbody>();
@@ -186,6 +193,43 @@ public class CharacterInteraction : MonoBehaviour
                 {
                     _pointerBeam.SetActive(true);
                 }
+            }
+        }
+    }
+
+    private void MenuSelect()
+    {
+        if (OVRInput.GetDown(OVRInput.Button.Back) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!_menuActive)
+            {
+                if(Application.platform == RuntimePlatform.Android)
+                {
+                    _VRCanvas.SetActive(true);
+                    _VRDisplayScore.SetActive(false);
+                    _VRLoad.SetActive(true);
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    loadGame.SetActive(true);
+                }
+                _menuActive = true;
+            }
+            else
+            {
+                if (Application.platform == RuntimePlatform.Android)
+                {
+                    _VRDisplayScore.SetActive(true);
+                    _VRLoad.SetActive(false);
+                    _VRCanvas.SetActive(false);
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    loadGame.SetActive(false);
+                }
+                _menuActive = false;
             }
         }
     }
