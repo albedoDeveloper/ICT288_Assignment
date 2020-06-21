@@ -8,6 +8,8 @@ public class horn : MonoBehaviour
     [HideInInspector]
     public int hornPosition = 0;
 
+    [SerializeField] Level1Tutorial _tut;
+
     void Start()
     {
         startPos = transform.localPosition;   
@@ -36,6 +38,7 @@ public class horn : MonoBehaviour
         {
             GetComponent<AudioSource>().Play();
             hornPosition = 1;
+            _tut.ChainPulled();
         }
            
     }
