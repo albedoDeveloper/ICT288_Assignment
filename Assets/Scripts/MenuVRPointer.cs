@@ -19,7 +19,6 @@ public class MenuVRPointer : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.forward, out _hit))
         {
-            Debug.Log("WHAT?" + _hit.collider.gameObject.name);
             if (_hit.collider.CompareTag("Button"))
             {
                 //SceneManager.LoadScene("Kye_Scene 1");

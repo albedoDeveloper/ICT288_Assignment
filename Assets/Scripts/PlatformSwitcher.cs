@@ -16,32 +16,36 @@ public class PlatformSwitcher : MonoBehaviour
     public GameObject FPSController;
     public GameObject VRController;
 
-    public GameObject OVRControllerLeft;
-    public GameObject OVRControllerRight;
+    //public GameObject leftHandAnchor;
+    //public GameObject rightHandAnchor;
 
-    public GameObject pointerBeamLeft;
-    public GameObject pointerBeamRight;
 
     // Start is called before the first frame update
     void Start()
     {
-        platformText.text = ("Current Platform:" + Application.platform.ToString());
+        if(platformText!=null)
+            platformText.text = ("Current Platform:" + Application.platform.ToString());
+
+        if (platformText != null)
+        {
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                platformText.text = ("Current Platform:" + Application.platform.ToString());
+                EnableVRMode();
+                //CheckHands();
+            }
+            else
+            {
+                platformText.text = ("Current Platform:" + Application.platform.ToString());
+                EnableFPSMode();
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Application.platform == RuntimePlatform.Android)
-        {
-            platformText.text = ("Current Platform:" + Application.platform.ToString());
-            EnableVRMode();
-            CheckHands();
-        }
-        else
-        {
-            platformText.text = ("Current Platform:" + Application.platform.ToString());
-            EnableFPSMode();
-        }
+       
     }
 
     public void EnableVRMode()
@@ -71,6 +75,7 @@ public class PlatformSwitcher : MonoBehaviour
 
         VREventSystem.SetActive(true);
         FPSEventSystem.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void EnableFPSMode()
@@ -101,42 +106,42 @@ public class PlatformSwitcher : MonoBehaviour
         FPSEventSystem.SetActive(true);
     }
 
-    private void CheckHands()
-    {
-        if (OVRInput.IsControllerConnected(OVRInput.Controller.LTrackedRemote))
-        {
-            if(OVRControllerLeft != null && pointerBeamLeft != null)
-            {
-                OVRControllerLeft.SetActive(true);
-                pointerBeamLeft.SetActive(true);
-            }
+    //private void CheckHands()
+    //{
+    //    if (OVRInput.IsControllerConnected(OVRInput.Controller.LTrackedRemote))
+    //    {
+    //        if(leftHandAnchor != null)
+    //        {
+    //            leftHandAnchor.SetActive(true);
+    //            if(VREventSystem != null)
+    //                VREventSystem.GetComponent<HandedInputSelector>().ovrInputModule.rayTransform = leftHandAnchor.transform;
+    //        }
 
-        }
-        else
-        {
-            if (OVRControllerLeft != null && pointerBeamLeft != null)
-            {
-                OVRControllerLeft.SetActive(false);
-                pointerBeamLeft.SetActive(false);
-            }
-        }
+    //    }
+    //    else
+    //    {
+    //        if (leftHandAnchor != null)
+    //        {
+    //            leftHandAnchor.SetActive(false);
+    //        }
+    //    }
 
-        if (OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote))
-        {
-            if (OVRControllerRight != null && pointerBeamRight != null)
-            {
-                OVRControllerRight.SetActive(true);
-                pointerBeamRight.SetActive(true);
-            }
-        }
-        else
-        {
-            if (OVRControllerRight != null && pointerBeamRight != null)
-            {
-                OVRControllerRight.SetActive(false);
-                pointerBeamRight.SetActive(false);
-            }
-        }
-    }
+    //    if (OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote))
+    //    {
+    //        if (rightHandAnchor != null)
+    //        {
+    //            rightHandAnchor.SetActive(true);
+    //            if (VREventSystem != null)
+    //                VREventSystem.GetComponent<HandedInputSelector>().ovrInputModule.rayTransform = rightHandAnchor.transform;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if (rightHandAnchor != null)
+    //        {
+    //            rightHandAnchor.SetActive(false);
+    //        }
+    //    }
+    //}
 
 }

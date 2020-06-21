@@ -47,7 +47,6 @@ public class Projectile : MonoBehaviour
     {
         if (collision.GetComponent<Coin>() != null)
         {
-            Debug.Log("Dooby doo");
             collision.GetComponent<Coin>().CollectCoin();
         }
     }

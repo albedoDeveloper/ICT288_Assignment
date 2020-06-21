@@ -26,11 +26,31 @@ public class PauseManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            _VR_Pause.gameObject.SetActive(true);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            _PC_Pause.gameObject.SetActive(true);
+        }
+        _menuActive = true;
     }
 
     public void UnPauseGame()
     {
         Time.timeScale = 1;
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            _VR_Pause.gameObject.SetActive(false);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            _PC_Pause.gameObject.SetActive(false);
+        }
+        _menuActive = false;
     }
 
     public void MenuSelect()
@@ -40,30 +60,11 @@ public class PauseManager : MonoBehaviour
             if (!_menuActive)
             {
                 PauseGame();
-                if (Application.platform == RuntimePlatform.Android)
-                {
-                    _VR_Pause.gameObject.SetActive(true);
-                }
-                else
-                {
-                    _PC_Pause.gameObject.SetActive(true);
-                    Cursor.lockState = CursorLockMode.None;
-                }
-                _menuActive = true;
+                
             }
             else
             {
                 UnPauseGame();
-                if (Application.platform == RuntimePlatform.Android)
-                {
-                    _VR_Pause.gameObject.SetActive(false);
-                }
-                else
-                {
-                    _PC_Pause.gameObject.SetActive(false);
-                    Cursor.lockState = CursorLockMode.Locked;
-                }
-                _menuActive = false;
             }
         }
     }
