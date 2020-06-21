@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -13,10 +14,17 @@ public class BirdFlocker : MonoBehaviour {
     private horn horn = null;
     private bool hasFlown = false;
 
+    [SerializeField] Level1Tutorial _tutorial;
+
     void OnTriggerStay(Collider collider)
     {
         if (collider.tag == "Train" && !hasFlown)
         {
+            if (_tutorial != null)
+            {
+                _tutorial.HitBirds();
+            }
+
             train.GetComponent<PathCreation.Examples.PathFollower>().speed = 0;
             train.GetComponent<PathCreation.Examples.PathFollower>().enabled = false;
 
@@ -31,12 +39,8 @@ public class BirdFlocker : MonoBehaviour {
                         hasFlown = true;
                     }
                     Destroy(bird, 10);
-
                 }
-
             }
-
         }
     }
-
 }
