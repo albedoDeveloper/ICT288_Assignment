@@ -29,9 +29,18 @@ public class CutSceneOneStart : MonoBehaviour
     [SerializeField]
     private AudioSource dolphinNoise = null;
 
+    [SerializeField]
+    private GameObject canvas = null;
+
+
+    [SerializeField]
+    private GameObject canvasAndroid = null;
+
     private uint displayText = 0;
 
     private bool re = true;
+    private bool movedOnce = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +72,7 @@ public class CutSceneOneStart : MonoBehaviour
                 break;
 
             case 3:
-                talkingText.text = "Fairuz the Dolphin: Don't worry about that now, my\n friends are in danger!";
+                talkingText.text = "Fairuz the Dolphin: Don't worry about that now, \n our livelyhood is in danger!";
                 break;
 
             case 4:
@@ -72,7 +81,7 @@ public class CutSceneOneStart : MonoBehaviour
                 break;
 
             case 5:
-                talkingText.text = "Fairuz the Dolphin: My friends have be captured at the\n end of the jetty by the giant seagull, Robert the Terrible,\n and they need someone to rescue them!\n Will you be the hero we need?";
+                talkingText.text = "Fairuz the Dolphin: The Princess has beeen captured at the\n end of the jetty by the giant seagull, Robert the Terrible,\n and they need someone to rescue her!\n Will you be the hero we need?";
                 break;
 
             case 6:
@@ -86,7 +95,7 @@ public class CutSceneOneStart : MonoBehaviour
 
             case 8:
                 dolphinNoise.Play();
-                talkingText.text = "You: Okay, the train it is! Don't worry, I will save your friends!";
+                talkingText.text = "You: Okay, the train it is! Don't worry, I will save the princess!";
                 break;
 
             case 9:
@@ -139,6 +148,15 @@ public class CutSceneOneStart : MonoBehaviour
 
         displayText++;
         dolphinNoise.Play();
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            canvasAndroid.transform.position = canvas.transform.position;
+            canvasAndroid.transform.rotation = canvas.transform.rotation;
+
+            canvasAndroid.transform.GetChild(0).position = canvas.transform.transform.GetChild(0).position;
+
+            talkingText = canvasAndroid.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        }
     }
 
     IEnumerator WaitForTear()
@@ -150,7 +168,17 @@ public class CutSceneOneStart : MonoBehaviour
             re = false;
 
         }
-        talkingText.text = "Please hurry,\n I miss my friends so much...";
+        talkingText.text = "Please hurry,\n I miss her so much...";
+        if (Application.platform == RuntimePlatform.Android && movedOnce)
+        {
+            canvasAndroid.transform.position = canvas.transform.position;
+            canvasAndroid.transform.rotation = canvas.transform.rotation;
+
+            canvasAndroid.transform.GetChild(0).position = new Vector3( canvas.transform.transform.GetChild(0).position.x - 4, canvas.transform.transform.GetChild(0).position.y, canvas.transform.transform.GetChild(0).position.z - 15);
+
+            talkingText = canvasAndroid.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        }
+
         //dolphinNoise.Play();
 
         transform.position = new Vector3(dolphin.transform.position.x + 2.5f, dolphin.transform.position.y + 4.2f, dolphin.transform.position.z + 3.4f);
