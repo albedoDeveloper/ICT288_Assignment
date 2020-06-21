@@ -82,7 +82,7 @@ public class FPSCrossbow : MonoBehaviour
 
     void TryFire()
     {
-        if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButtonDown(0)) && _reloaded)
+        if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButtonDown(0)) && _reloaded)
         {
             switch (_activePowerup)
             {
