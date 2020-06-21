@@ -11,6 +11,10 @@ public class BossBarrelParent : MonoBehaviour
 
 
     private Vector3 fpsCharacter;
+
+    [SerializeField]
+    private float stoppingDistance = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,7 @@ public class BossBarrelParent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(transform.position, fpsCharacter) > 100f)
+        if(Vector3.Distance(transform.position, fpsCharacter) > stoppingDistance)
             transform.position = Vector3.MoveTowards(transform.position, fpsCharacter, 5 * Time.deltaTime);
 
     }
