@@ -4,6 +4,12 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.SceneManagement;
+
+
+/// <summary>
+///  Author: Kye Horbury
+/// 
+/// </summary>
 public class EndPlatform : MonoBehaviour {
 
     public Gui scoreInfo;
@@ -49,7 +55,7 @@ public class EndPlatform : MonoBehaviour {
 
     void OnTriggerStay(Collider collider)
     {
-        var currentLevel = SceneManager.GetActiveScene().buildIndex.ToString();
+        var currentLevel = (SceneManager.GetActiveScene().buildIndex - 1).ToString();
         Cursor.lockState = CursorLockMode.None;
 
         if (collider.tag == "Train")

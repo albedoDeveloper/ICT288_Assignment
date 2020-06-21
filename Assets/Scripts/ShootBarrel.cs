@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Author:Kye Horbury
+/// </summary>
+
 public class ShootBarrel : Barrel
 {
     Rigidbody _rb2 = null;
