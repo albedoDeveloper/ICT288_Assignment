@@ -29,11 +29,13 @@ public class CharacterInteraction : MonoBehaviour
 
     private Outline _previousOutline;
 
-    private bool _menuActive;
-    //public GameObject loadGame;
-    //public GameObject _VRCanvas;
-    //public GameObject _VRLoad;
-    //public GameObject _VRDisplayScore;
+    PauseManager pauseManager;
+
+
+    private void Start()
+    {
+        pauseManager = FindObjectOfType<PauseManager>();    
+    }
 
     private void Update()
     {
@@ -41,7 +43,7 @@ public class CharacterInteraction : MonoBehaviour
         PickupItem();
         PullHorn();
         DropItem();
-        //MenuSelect();
+        PauseGame();
         if (!_pickupThisFrame)
         {
             ThrowHeldItem();
@@ -118,13 +120,12 @@ public class CharacterInteraction : MonoBehaviour
             {
                 if (_hit.collider.name == "CoalPile")
                 {
-                    if(_tut != null)
+                    if (_tut != null)
                     {
                         _tut.CoalPickedUp(); // Tell tutorial that coal was picked up
                     }
                     _heldItem = Instantiate(_coalPiecePrefab, _holdPoint, false);
                     _pickupThisFrame = true;
-
                     if (_pointerBeam != null)
                     {
                         _pointerBeam.SetActive(false);
@@ -132,12 +133,11 @@ public class CharacterInteraction : MonoBehaviour
                 }
                 else if (_hit.collider.name == "CrossbowPickup")
                 {
-                    
-                    if(_tut != null)
+                    if (_tut != null)
                     {
                         _tut.CrossbowPickedUp();
-
                     }
+                    
                     EquipCrossbow();
                 }
             }
@@ -174,7 +174,7 @@ public class CharacterInteraction : MonoBehaviour
             {
                 horn.hornPosition = 1;
                 horn.GetComponent<AudioSource>().Play();
-                if(_tut != null)
+                if (_tut != null)
                 {
                     _tut.ChainPulled();
                 }
@@ -209,40 +209,13 @@ public class CharacterInteraction : MonoBehaviour
         }
     }
 
-    private void MenuSelect()
+   private void PauseGame()
     {
-        if (OVRInput.GetDown(OVRInput.Button.Back) || Input.GetKeyDown(KeyCode.Escape))
+        if(pauseManager != null)
         {
-            if (!_menuActive)
-            {
-                if(Application.platform == RuntimePlatform.Android)
-                {
-                    //_VRCanvas.SetActive(true);
-                    //_VRDisplayScore.SetActive(false);
-                    //_VRLoad.SetActive(true);
-                }
-                else
-                {
-                    Cursor.lockState = CursorLockMode.None;
-                    //loadGame.SetActive(true);
-                }
-                _menuActive = true;
-            }
-            else
-            {
-                if (Application.platform == RuntimePlatform.Android)
-                {
-                    //_VRDisplayScore.SetActive(true);
-                    //_VRLoad.SetActive(false);
-                    //_VRCanvas.SetActive(false);
-                }
-                else
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    //loadGame.SetActive(false);
-                }
-                _menuActive = false;
-            }
+            pauseManager.MenuSelect();
         }
     }
+
+
 }

@@ -16,6 +16,12 @@ public class PlatformSwitcher : MonoBehaviour
     public GameObject FPSController;
     public GameObject VRController;
 
+    public GameObject OVRControllerLeft;
+    public GameObject OVRControllerRight;
+
+    public GameObject pointerBeamLeft;
+    public GameObject pointerBeamRight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +35,7 @@ public class PlatformSwitcher : MonoBehaviour
         {
             platformText.text = ("Current Platform:" + Application.platform.ToString());
             EnableVRMode();
+            CheckHands();
         }
         else
         {
@@ -93,4 +100,43 @@ public class PlatformSwitcher : MonoBehaviour
         VREventSystem.SetActive(false);
         FPSEventSystem.SetActive(true);
     }
+
+    private void CheckHands()
+    {
+        if (OVRInput.IsControllerConnected(OVRInput.Controller.LTrackedRemote))
+        {
+            if(OVRControllerLeft != null && pointerBeamLeft != null)
+            {
+                OVRControllerLeft.SetActive(true);
+                pointerBeamLeft.SetActive(true);
+            }
+
+        }
+        else
+        {
+            if (OVRControllerLeft != null && pointerBeamLeft != null)
+            {
+                OVRControllerLeft.SetActive(false);
+                pointerBeamLeft.SetActive(false);
+            }
+        }
+
+        if (OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote))
+        {
+            if (OVRControllerRight != null && pointerBeamRight != null)
+            {
+                OVRControllerRight.SetActive(true);
+                pointerBeamRight.SetActive(true);
+            }
+        }
+        else
+        {
+            if (OVRControllerRight != null && pointerBeamRight != null)
+            {
+                OVRControllerRight.SetActive(false);
+                pointerBeamRight.SetActive(false);
+            }
+        }
+    }
+
 }
