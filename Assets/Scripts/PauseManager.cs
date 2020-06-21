@@ -55,7 +55,7 @@ public class PauseManager : MonoBehaviour
 
     public void MenuSelect()
     {
-        if (OVRInput.GetDown(OVRInput.Button.Back) || Input.GetKeyDown(KeyCode.Escape))
+        if (OVRInput.GetDown(OVRInput.Button.Two) || OVRInput.GetDown(OVRInput.Button.Back) || Input.GetKeyDown(KeyCode.Escape))
         {
             if (!_menuActive)
             {

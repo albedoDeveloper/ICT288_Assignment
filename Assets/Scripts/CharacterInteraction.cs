@@ -29,13 +29,17 @@ public class CharacterInteraction : MonoBehaviour
 
     private Outline _previousOutline;
 
-    PauseManager pauseManager;
+
+    private PauseManager pauseManager;
 
 
     private void Start()
     {
         pauseManager = FindObjectOfType<PauseManager>();    
     }
+
+    private bool _menuActive;
+
 
     private void Update()
     {
@@ -44,6 +48,7 @@ public class CharacterInteraction : MonoBehaviour
         PullHorn();
         DropItem();
         PauseGame();
+
         if (!_pickupThisFrame)
         {
             ThrowHeldItem();
@@ -116,7 +121,7 @@ public class CharacterInteraction : MonoBehaviour
     {
         if (_heldItem == null && _didHit)
         {
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButtonDown(0))
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButtonDown(0))
             {
                 if (_hit.collider.name == "CoalPile")
                 {
@@ -126,6 +131,7 @@ public class CharacterInteraction : MonoBehaviour
                     }
                     _heldItem = Instantiate(_coalPiecePrefab, _holdPoint, false);
                     _pickupThisFrame = true;
+
                     if (_pointerBeam != null)
                     {
                         _pointerBeam.SetActive(false);
@@ -137,7 +143,6 @@ public class CharacterInteraction : MonoBehaviour
                     {
                         _tut.CrossbowPickedUp();
                     }
-                    
                     EquipCrossbow();
                 }
             }
@@ -174,7 +179,7 @@ public class CharacterInteraction : MonoBehaviour
             {
                 horn.hornPosition = 1;
                 horn.GetComponent<AudioSource>().Play();
-                if (_tut != null)
+                if(_tut != null)
                 {
                     _tut.ChainPulled();
                 }

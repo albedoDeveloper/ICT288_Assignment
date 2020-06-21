@@ -352,6 +352,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2797290cc09e5042bfe4f17aae84cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7335996115227283408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3385830500837517636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19db737700a0101418ae4a40ba13ddb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _raycastDistance: 100
+  _coalPiecePrefab: {fileID: 8431269740436280316, guid: 5097d110797e3b745bfa036242c05b11,
+    type: 3}
+  _holdPoint: {fileID: 1850033261}
+  _throwForce: 100
+  _trainParent: {fileID: 0}
+  _crossbowPickup: {fileID: 0}
+  _fpsCrossbow: {fileID: 0}
+  horn: {fileID: 0}
+  _tut: {fileID: 0}
+  _pointerBeam: {fileID: 629510003}
+  _controller: {fileID: 3385830499935248371}
+  _pcCamera: {fileID: 0}
+--- !u!114 &424295072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3385830500837523408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2797290cc09e5042bfe4f17aae84cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &599209322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,18 +414,6 @@ MonoBehaviour:
   _pointerBeam: {fileID: 1829422729708818962}
   _controller: {fileID: 0}
   _pcCamera: {fileID: 0}
---- !u!114 &424295072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3385830500837523408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2797290cc09e5042bfe4f17aae84cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3385830499935283559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -480,6 +505,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
+--- !u!1 &3385830499935248371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 112276, guid: d9809c5e8418bb047bf2c8ba1d1a2cec,
+    type: 3}
+  m_PrefabInstance: {fileID: 3385830499935283559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3385830500837606328
 PrefabInstance:
   m_ObjectHideFlags: 0
