@@ -55,7 +55,7 @@ public class EndPlatform : MonoBehaviour {
 
     void OnTriggerStay(Collider collider)
     {
-        var currentLevel = SceneManager.GetActiveScene().buildIndex.ToString();
+        var currentLevel = (SceneManager.GetActiveScene().buildIndex - 1).ToString();
         Cursor.lockState = CursorLockMode.None;
 
         if (collider.tag == "Train")
