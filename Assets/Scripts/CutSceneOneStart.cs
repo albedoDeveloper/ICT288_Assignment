@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Author: Kye
+/// Author: Kye Horbury
 /// </summary>
 public class CutSceneOneStart : MonoBehaviour
 {

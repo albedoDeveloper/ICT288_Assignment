@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Author: Kye Horbury
+/// 
+/// </summary>
 public class BarrelSwerve : Barrel
 {
     Rigidbody _rb = null;

@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/// <summary>
+/// Author: Kye Horbury
+/// 
+/// </summary>
 
 public class BossBarrel : Barrel
 {
