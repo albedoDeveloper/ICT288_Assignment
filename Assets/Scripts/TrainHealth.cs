@@ -10,6 +10,10 @@ public class TrainHealth : MonoBehaviour
     [SerializeField] GameObject _healthPC;
     [SerializeField] GameObject _healthVR;
     [SerializeField] GameObject _gameOverPanel;
+    [SerializeField] GameObject _gameOverPanelVR;
+    [SerializeField] GameObject _crossbow;
+    [SerializeField] GameObject _vrController;
+    [SerializeField] LineRenderer _lineRender;
 
     public void TakeDamage(short damage)
     {
@@ -17,15 +21,32 @@ public class TrainHealth : MonoBehaviour
         if (_healthPoints <= 0)
         {
             _healthPoints = 0;
-            ShowRestartLevelPanel();
         }
 
         UpdateGUI();
+
+        if (_healthPoints <= 0)
+        {
+            ShowGameOverPanel();
+        }
     }
 
-    void ShowRestartLevelPanel()
+    void ShowGameOverPanel()
     {
-        _gameOverPanel.SetActive(true);
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            Vector3[] p = new Vector3[3];
+            _lineRender.GetPositions(p);
+            p[1].z *= 10;
+            _lineRender.SetPositions(p);
+            _gameOverPanelVR.SetActive(true);
+            _crossbow.SetActive(false);
+            _vrController.SetActive(true);
+        }
+        else
+        {
+            _gameOverPanel.SetActive(true);
+        }
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0;
