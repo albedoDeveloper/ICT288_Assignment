@@ -118,7 +118,10 @@ public class CharacterInteraction : MonoBehaviour
             {
                 if (_hit.collider.name == "CoalPile")
                 {
-                    _tut.CoalPickedUp(); // Tell tutorial that coal was picked up
+                    if (_tut != null)
+                    {
+                        _tut.CoalPickedUp(); // Tell tutorial that coal was picked up
+                    }
                     _heldItem = Instantiate(_coalPiecePrefab, _holdPoint, false);
                     _pickupThisFrame = true;
                     if (_pointerBeam != null)
@@ -128,7 +131,10 @@ public class CharacterInteraction : MonoBehaviour
                 }
                 else if (_hit.collider.name == "CrossbowPickup")
                 {
-                    _tut.CrossbowPickedUp();
+                    if (_tut != null)
+                    {
+                        _tut.CrossbowPickedUp(); // Tell tutorial that crossbow was picked up
+                    }
                     EquipCrossbow();
                 }
             }
@@ -165,7 +171,10 @@ public class CharacterInteraction : MonoBehaviour
             {
                 horn.hornPosition = 1;
                 horn.GetComponent<AudioSource>().Play();
-                _tut.ChainPulled();
+                if (_tut != null)
+                {
+                    _tut.ChainPulled(); // Tell tutorial
+                }
             }
         }
     }

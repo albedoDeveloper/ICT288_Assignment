@@ -34,7 +34,7 @@ public class BarrelSpawner : MonoBehaviour
 
     IEnumerator StartDelay()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(7);
         StartCoroutine("SpawnBarrels");
         Debug.Log("Wave " + _currentWave + " started");
     }
