@@ -39,6 +39,7 @@ public class BossBarrel : Barrel
         transform.eulerAngles = defaultRotation;
     }
 
+    /*
     public override void TakeDamage(int amount)
     {
         _health2 -= amount;
@@ -52,4 +53,5 @@ public class BossBarrel : Barrel
             Destroy(gameObject);
         }
     }
+    */
 }

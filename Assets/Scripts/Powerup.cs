@@ -5,11 +5,10 @@ using TMPro;
 
 public class Powerup : MonoBehaviour
 {
-    public enum PowerupType { NONE, SCATTER, RAPIDFIRE};
+    public enum PowerupType { NONE, SCATTER };
 
     [SerializeField] Level3Manager _lvl3Man;
-    [SerializeField] FPSCrossbow _crossbowPC;
-    [SerializeField] FPSCrossbow _crossbowVR;
+    [SerializeField] FPSCrossbow _crossbow;
     [SerializeField] PowerupType _powerup;
     [SerializeField] int _cost;
     [SerializeField] TextMeshProUGUI _costText;
@@ -26,14 +25,7 @@ public class Powerup : MonoBehaviour
         if (_lvl3Man.GetCash() >= _cost)
         {
             _lvl3Man.SubtractCash(_cost);
-            if (Application.platform == RuntimePlatform.Android)
-            {
-                _crossbowVR.ActivatePowerup(_powerup);
-            }
-            else
-            {
-                _crossbowPC.ActivatePowerup(_powerup);
-            }
+            _crossbow.ActivatePowerup(_powerup);
         }
         else
         {

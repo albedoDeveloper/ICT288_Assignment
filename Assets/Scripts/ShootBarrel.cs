@@ -30,7 +30,7 @@ public class ShootBarrel : Barrel
         if (Vector3.Distance(transform.position, fpsCharacter) < 10f)
         {
             Destroy(gameObject);
-            lowerTrainHealth.TakeDamage(25);
+            //lowerTrainHealth.TakeDamage(25);
         }
 
     }
@@ -47,7 +47,7 @@ public class ShootBarrel : Barrel
 
     }
 
-
+    /*
     public override void TakeDamage(int amount)
     {
         _health2 -= amount;
@@ -61,4 +61,5 @@ public class ShootBarrel : Barrel
             Destroy(gameObject);
         }
     }
+    */
 }

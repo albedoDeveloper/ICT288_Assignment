@@ -6,10 +6,9 @@ using UnityEngine.UI;
 public class TrainHealth : MonoBehaviour
 {
     short _healthPoints = 100;
-    [SerializeField] Slider _healthPC;
-    [SerializeField] Slider _healthVR;
+    [SerializeField] Slider _sliderGUI;
 
-    public void TakeDamage(short damage)
+    void TakeDamage(short damage)
     {
         _healthPoints -= damage;
         if (_healthPoints <= 0)
@@ -23,15 +22,7 @@ public class TrainHealth : MonoBehaviour
 
     void UpdateGUI()
     {
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            _healthVR.value = _healthPoints;
-        }
-        else
-        {
-            _healthPC.value = _healthPoints;
-        }
-        
+        _sliderGUI.value = _healthPoints;
     }
 
     private void OnTriggerEnter(Collider other)
