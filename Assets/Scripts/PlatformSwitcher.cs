@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class PlatformSwitcher : MonoBehaviour
@@ -13,28 +14,51 @@ public class PlatformSwitcher : MonoBehaviour
 
     public GameObject menuCanvas;
 
+    public OVRInputModule ovrInputModule;
+
     public GameObject FPSController;
     public GameObject VRController;
+
+    public GameObject leftHandAnchor;
+    public GameObject leftOVRController;
+    public GameObject leftPointerBeam;
+
+    public GameObject rightHandAnchor;
+    public GameObject rightOVRController;
+    public GameObject rightPointerBeam;
 
     // Start is called before the first frame update
     void Start()
     {
-        platformText.text = ("Current Platform:" + Application.platform.ToString());
+        if (platformText != null)
+        {
+            platformText.text = ("Current Platform:" + Application.platform.ToString());
+        }
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (platformText != null)
+            {
+                platformText.text = ("Current Platform:" + Application.platform.ToString());
+            }
+
+            EnableVRMode();
+        }
+        else
+        {
+            if (platformText != null)
+            {
+                platformText.text = ("Current Platform:" + Application.platform.ToString());
+            }
+
+            EnableFPSMode();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Application.platform == RuntimePlatform.Android)
-        {
-            platformText.text = ("Current Platform:" + Application.platform.ToString());
-            EnableVRMode();
-        }
-        else
-        {
-            platformText.text = ("Current Platform:" + Application.platform.ToString());
-            EnableFPSMode();
-        }
+        CheckHands();
     }
 
     public void EnableVRMode()
@@ -92,5 +116,39 @@ public class PlatformSwitcher : MonoBehaviour
          
         VREventSystem.SetActive(false);
         FPSEventSystem.SetActive(true);
+    }
+
+    private void CheckHands()
+    {
+        if(leftHandAnchor != null && rightHandAnchor != null)
+        {
+            if (OVRInput.IsControllerConnected(OVRInput.Controller.LTrackedRemote))
+            {
+                leftOVRController.SetActive(true);
+                leftPointerBeam.SetActive(true);
+
+                rightOVRController.SetActive(false);
+                rightPointerBeam.SetActive(false);
+
+                if (VREventSystem != null)
+                    ovrInputModule.rayTransform = leftHandAnchor.transform;
+
+                
+            }
+            else if((OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote)))
+            {
+                rightOVRController.SetActive(true);
+                rightPointerBeam.SetActive(true);
+
+                leftOVRController.SetActive(false);
+                leftPointerBeam.SetActive(false);
+
+                if (VREventSystem != null)
+                    ovrInputModule.rayTransform = rightHandAnchor.transform;
+
+                
+            }
+        }
+        
     }
 }

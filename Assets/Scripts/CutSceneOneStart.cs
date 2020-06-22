@@ -64,37 +64,45 @@ public class CutSceneOneStart : MonoBehaviour
         {
             case 1:
                 talkingText.text = "Fairuz the Dolphin: Finally you have arrived!\nMr.Jetty Manager I desperately need your help!\n (Press E or the Trigger button to continue)";
+                talkingText.color = new Color32(0, 0, 225, 255);
                 break;
 
             case 2:
                 dolphinNoise.Play();
                 talkingText.text = "You: Sure th... \nWait you are dolphin, how can I understand you??";
+                talkingText.color = new Color32(225, 225, 225 ,225);
                 break;
 
             case 3:
                 talkingText.text = "Fairuz the Dolphin: Don't worry about that now, \n our livelyhood is in danger!";
+                talkingText.color = new Color32(0, 0, 225, 255);
                 break;
 
             case 4:
                 dolphinNoise.Play();
                 talkingText.text = "You: Uh... I see. What has happened?";
+                talkingText.color = new Color32(225, 225, 225, 225);
                 break;
 
             case 5:
                 talkingText.text = "Fairuz the Dolphin: The Princess has beeen captured at the\n end of the jetty by the giant seagull, Robert the Terrible,\n and they need someone to rescue her!\n Will you be the hero we need?";
+                talkingText.color = new Color32(0, 0, 225, 255);
                 break;
 
             case 6:
                 dolphinNoise.Play();
+                talkingText.color = new Color32(225, 225, 225, 225);
                 talkingText.text = "You: Sure thing! It something too serious for me to just ignore.\n But what can I do to help?";
                 break;
 
             case 7:
                 talkingText.text = "Fairuz the Dolphin: Hmm you need to get there are fast as possible...\n I know! How about you take the jetty train, \nit will get you to the end way faster then walking!\n (Plus its cheap to ride too!)";
+                talkingText.color = new Color32(0, 0, 225, 255);
                 break;
 
             case 8:
                 dolphinNoise.Play();
+                talkingText.color = new Color32(225, 225, 225, 225);
                 talkingText.text = "You: Okay, the train it is! Don't worry, I will save the princess!";
                 break;
 
@@ -168,6 +176,7 @@ public class CutSceneOneStart : MonoBehaviour
             re = false;
 
         }
+        talkingText.color = new Color32(0, 0, 225, 255);
         talkingText.text = "Please hurry,\n I miss her so much...";
         if (Application.platform == RuntimePlatform.Android && movedOnce)
         {

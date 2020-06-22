@@ -19,10 +19,13 @@ public class Gui : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-        if (endOFLevel.finishedGame != true)
+        if (endOFLevel != null)
         {
-            timer += Time.deltaTime;
-            GetComponent<TextMeshProUGUI>().text = Math.Round(timer, 1).ToString();
+            if (endOFLevel.finishedGame != true)
+            {
+                timer += Time.deltaTime;
+                GetComponent<TextMeshProUGUI>().text = Math.Round(timer, 1).ToString();
+            }
         }
     }
 
