@@ -40,7 +40,16 @@ public class GrowthCutScene : MonoBehaviour
             //player.transform.Find("TrackingSpace").Find("RightHandAnchor").Find("FPSCrossbow").gameObject.SetActive(false);
             _audioSource.Play();
             yield return new WaitForSecondsRealtime(3);
-            player.transform.Find("TrackingSpace").Find("RightHandAnchor").Find("FPSCrossbow").GetComponent<FPSCrossbow>().ActivateSuperShots();
+            GameObject right = player.transform.Find("TrackingSpace").Find("RightHandAnchor").Find("PointerBeam").Find("FPSCrossbow").gameObject;
+            GameObject left = player.transform.Find("TrackingSpace").Find("LeftHandAnchor").Find("PointerBeam").Find("FPSCrossbow").gameObject;
+            if (right.activeInHierarchy)
+            {
+                right.GetComponent<FPSCrossbow>().ActivateSuperShots();
+            }
+            else if (left.activeInHierarchy)
+            {
+                left.GetComponent<FPSCrossbow>().ActivateSuperShots();
+            }
             _audioSource.clip = _bossmusic;
             _audioSource.volume = 0.3f;
             _audioSource.Play();
