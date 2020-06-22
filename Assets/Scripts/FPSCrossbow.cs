@@ -12,17 +12,20 @@ public class FPSCrossbow : MonoBehaviour
 {
     [SerializeField] GameObject _boltModel;
     [SerializeField] GameObject _projectile;
+    [SerializeField] GameObject _superProjectile;
     [SerializeField] GameObject _powerupBar;
     bool _reloaded = false;
     Animator _animator = null;
     AudioSource _as;
     Powerup.PowerupType _activePowerup = Powerup.PowerupType.NONE;
     float _powerupTimer;
+    GameObject _bolt;
 
     void Start()
     {
         _animator = GetComponent<Animator>();
         _as = GetComponent<AudioSource>();
+        _bolt = _projectile;
     }
 
     public void ActivatePowerup(Powerup.PowerupType type)
@@ -51,6 +54,11 @@ public class FPSCrossbow : MonoBehaviour
         PowerupCountdown();
         TryFire();
         TickPowerupBar();
+    }
+
+    public void ActivateSuperShots()
+    {
+        _bolt = _superProjectile;
     }
 
     void TickPowerupBar()
@@ -119,16 +127,16 @@ public class FPSCrossbow : MonoBehaviour
     {
         const float ANGLE = 5;
 
-        Instantiate(_projectile, _boltModel.transform.position, _boltModel.transform.rotation);
-        GameObject left = Instantiate(_projectile, _boltModel.transform.position, _boltModel.transform.rotation);
-        GameObject right = Instantiate(_projectile, _boltModel.transform.position, _boltModel.transform.rotation);
+        Instantiate(_bolt, _boltModel.transform.position, _boltModel.transform.rotation);
+        GameObject left = Instantiate(_bolt, _boltModel.transform.position, _boltModel.transform.rotation);
+        GameObject right = Instantiate(_bolt, _boltModel.transform.position, _boltModel.transform.rotation);
         left.transform.Rotate(left.transform.up, ANGLE, Space.World);
         right.transform.Rotate(right.transform.up, -ANGLE, Space.World);
     }
 
     void LaunchBolt()
     {
-        Instantiate(_projectile, _boltModel.transform.position, _boltModel.transform.rotation);
+        Instantiate(_bolt, _boltModel.transform.position, _boltModel.transform.rotation);
     }
 
     public void Reload()

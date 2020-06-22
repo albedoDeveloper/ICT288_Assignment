@@ -5,7 +5,7 @@ using UnityEngine;
 public class Barrel : MonoBehaviour
 {
     Rigidbody _rb = null;
-    int _health = 1;
+    public int _health = 1;
 
     // Start is called before the first frame update
     void Awake()

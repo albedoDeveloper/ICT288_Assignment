@@ -13,16 +13,14 @@ public class Cannon : MonoBehaviour
     [SerializeField]
     private bool leftCannon = true;
 
-    // Start is called before the first frame update
-    void Start()
+    public void StartShooting()
     {
-        StartCoroutine(ShootBarrel());
+        StartCoroutine("ShootBarrel");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StopShooting()
     {
-        
+        StopCoroutine("ShootBarrel");
     }
 
     IEnumerator ShootBarrel()

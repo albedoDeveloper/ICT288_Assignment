@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float _speed = 15;
     [SerializeField] AudioSource _niceShot;
     [SerializeField] GameObject _floatingTextPrefab;
+    [SerializeField] int _damage = 1;
     private Rigidbody _rb = null;
 
     private void Start()
@@ -34,7 +35,7 @@ public class Projectile : MonoBehaviour
         {
             DispPointText(10, transform.position);
             Destroy(gameObject);
-            collision.collider.GetComponent<Barrel>().TakeDamage(1); // TODO pass in variable
+            collision.collider.GetComponent<Barrel>().TakeDamage(_damage);
         }
         else if (collision.collider.GetComponent<Powerup>() != null)
         {
