@@ -6,12 +6,7 @@ public class VR_Raycast : MonoBehaviour
 {
     RaycastHit _hit;
     VRButton _lastHitButton;
-    [SerializeField] GameObject _hitImage;
-
-    private void Start()
-    {
-        _hitImage = Instantiate(_hitImage, transform);
-    }
+    [SerializeField] GameObject _debugObj;
 
     // Update is called once per frame
     void Update()
@@ -21,13 +16,7 @@ public class VR_Raycast : MonoBehaviour
             VRButton button = _hit.transform.GetComponent<VRButton>();
             _lastHitButton = button;
 
-            //if (_hitImage != null)
-            //{
-            //    _hitImage.SetActive(true);
-            //    _hitImage.transform.LookAt(transform);
-            //    _hitImage.transform.position = _hit.point;
-            //}
-
+                    Debug.Log(_hit.collider.gameObject.name);
             if (button != null)
             {
                 button.Hover();
@@ -44,11 +33,6 @@ public class VR_Raycast : MonoBehaviour
             {
                 _lastHitButton.UnHover();
             }
-
-            //if (_hitImage != null)
-            //{
-            //    _hitImage.SetActive(false);
-            //}
         }
     }
 }
