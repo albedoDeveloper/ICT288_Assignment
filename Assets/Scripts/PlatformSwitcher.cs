@@ -34,7 +34,6 @@ public class PlatformSwitcher : MonoBehaviour
         {
             platformText.text = ("Current Platform:" + Application.platform.ToString());
         }
-    }
 
         if (Application.platform == RuntimePlatform.Android)
         {
