@@ -68,49 +68,58 @@ public class FinalCutScene : MonoBehaviour
         {
             case 1:
                 talkingText.text = "Dolphin Princess: Thank you brave Jetty Manager...\n You have saved me from Robert the Terrible and saved the Jetty!";
+                talkingText.color =  new Color32(255, 182, 193, 255);
                 break;
 
             case 2:
                 dolphinNoise.Play();
                 talkingText.text = "Fairuz the Dolphin: How can we ever repay you?";
+                talkingText.color = new Color32(0, 0, 225, 255);
                 break;
-
+ 
             case 3:
                 talkingText.text = "You: There is no need! I am just doing my job!";
+                talkingText.color = new Color32(225, 225, 225, 225);
                 break;
 
             case 4:
                 dolphinNoise.Play();
+                talkingText.color = new Color32(255, 182, 193, 255);
                 talkingText.text = "Dolphin Princess: You should come to our\n underwater castle to celebrate!";
                 break;
 
             case 5:
                 talkingText.text = "Fairuz the Dolphin: Yeah, what a great idea!" ;
+                talkingText.color = new Color32(0, 0, 225, 255);
                 break;
 
             case 6:
                 dolphinNoise.Play();
                 talkingText.text = "You: As much as I would love to, I am not a dolphin\n so I can't swim that far";
+                talkingText.color = new Color32(225, 225, 225, 225);
                 break;
 
             case 7:
                 dolphinNoise.Play();
                 talkingText.text = "Fairuz the Dolphin: Uhh...";
+                talkingText.color = new Color32(0, 0, 225, 255);
                 break;
 
             case 8:
                 talkingText.text = "Dolphin Pricess: ... Are you okay, Jetty Manager?";
+                talkingText.color = new Color32(255, 182, 193, 255);
                 break;
 
             case 9:
                 dolphinNoise.Play();
                 talkingText.text = "You: What do you mean?";
+                talkingText.color = new Color32(225, 225, 225, 225);
                 break;
 
 
             case 10:
                 talkingText.text = "Fairuz the Dolphin: Manager, you ARE a Dolphin!";
-                
+                talkingText.color = new Color32(0, 0, 225, 255);
                 break;
 
             case 11:
@@ -123,6 +132,7 @@ public class FinalCutScene : MonoBehaviour
                 break;
 
             case 12:
+                talkingText.color = new Color32(225, 225, 225, 225);
                 talkingText.text = "You: I have no idea what you are talking about!";
 
                if (Application.platform == RuntimePlatform.Android && changePos)
