@@ -62,6 +62,8 @@ public class BarrelSpawner : MonoBehaviour
         _currentWave++;
         UpdateWaveBarGUI();
         Debug.Log("Wave " + _currentWave + " started");
+        _audioSource.clip = _clips[_currentWave - 1];
+        _audioSource.Play();
         if (_currentWave == _bossSpawnOnWave)
         {
             SpawnBoss();
@@ -78,10 +80,7 @@ public class BarrelSpawner : MonoBehaviour
     }
 
     IEnumerator SpawnBarrels()
-    {
-        _audioSource.clip = _clips[_currentWave - 1];
-        _audioSource.Play();
-
+    { 
         _barrelsLeft = _waves[_currentWave-1].numOfBarrels;
 
         while (true)
