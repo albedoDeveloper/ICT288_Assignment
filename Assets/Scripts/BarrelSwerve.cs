@@ -90,7 +90,6 @@ public class BarrelSwerve : Barrel
 
     }
 
-
     void OnCollisionEnter(Collision collision)
     {
     
@@ -99,7 +98,6 @@ public class BarrelSwerve : Barrel
             Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
         }
     }
-
 
     public void TakeDamage(int amount)
     {
