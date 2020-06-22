@@ -17,10 +17,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Level2.unity
     guid: e01ed395518c0a549917b2ace6647f50
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level3-Rob.unity
     guid: b90557f4009424d42a15bb6e9bc801a5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FinalCutscene.unity
     guid: 28112bd9848426a4789a5d5996f173f7
+  - enabled: 0
+    path: Assets/Scenes/WaterTestScene.unity
+    guid: aa5a7882abdcb1b4b8a2887b2944de9c
   m_configObjects: {}
