@@ -13,6 +13,7 @@ public class BossBarrel : Barrel
 {
     [SerializeField] GameObject _explosion;
     [SerializeField] GameObject _healthBar;
+    [SerializeField] int _bossStartingHealth = 9000;
     Slider _healthSlider;
     TextMeshProUGUI _healthText;
 
@@ -24,7 +25,7 @@ public class BossBarrel : Barrel
     // Start is called before the first frame update
     void Awake()
     {
-        _health = 9000;
+        _health = _bossStartingHealth;
         _healthSlider = _healthBar.GetComponent<Slider>();
         _healthText = _healthBar.transform.Find("Text").GetComponent<TextMeshProUGUI>();
         _rb2 = GetComponent<Rigidbody>();

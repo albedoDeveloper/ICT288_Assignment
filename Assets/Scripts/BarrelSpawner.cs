@@ -61,7 +61,7 @@ public class BarrelSpawner : MonoBehaviour
         _currentWave++;
         UpdateWaveBarGUI();
         Debug.Log("Wave " + _currentWave + " started");
-        if (_currentWave == 6)
+        if (_currentWave == 2)
         {
             SpawnBoss();
         }
