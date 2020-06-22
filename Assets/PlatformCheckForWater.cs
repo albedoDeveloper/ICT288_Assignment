@@ -18,11 +18,17 @@ public class PlatformCheckForWater : MonoBehaviour
     {
         if (Application.platform == RuntimePlatform.Android)
         {
-            _VRWater.GetChild(0).transform.gameObject.SetActive(true);
+            if(_VRWater != null)
+            {
+                _VRWater.GetChild(0).transform.gameObject.SetActive(true);
+            }
         }
         else
         {
-            _VRWater.GetChild(1).transform.gameObject.SetActive(true);
+            if (_VRWater != null)
+            {
+                _VRWater.GetChild(1).transform.gameObject.SetActive(true);
+            }
         }
     }
 }
