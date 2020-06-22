@@ -37,6 +37,16 @@ public class GrowthCutScene : MonoBehaviour
         if (Application.platform == RuntimePlatform.Android)
         {
             GameObject player = GameObject.Find("VR_Character");
+            //player.transform.Find("TrackingSpace").Find("RightHandAnchor").Find("FPSCrossbow").gameObject.SetActive(false);
+            _audioSource.Play();
+            yield return new WaitForSecondsRealtime(3);
+            player.transform.Find("TrackingSpace").Find("RightHandAnchor").Find("FPSCrossbow").GetComponent<FPSCrossbow>().ActivateSuperShots();
+            _audioSource.clip = _bossmusic;
+            _audioSource.volume = 0.3f;
+            _audioSource.Play();
+            Time.timeScale = 1;
+            _cannon1.StartShooting();
+            _cannon2.StartShooting();
         }
         else
         {
@@ -49,11 +59,11 @@ public class GrowthCutScene : MonoBehaviour
             yield return new WaitForSecondsRealtime(3);
             player.transform.Find("Main Camera").GetComponent<Camera>().fieldOfView = originalFOV;
             player.transform.Find("Main Camera").Find("FPSCrossbow").gameObject.SetActive(true);
+            player.transform.Find("Main Camera").Find("FPSCrossbow").GetComponent<FPSCrossbow>().ActivateSuperShots();
             _audioSource.clip = _bossmusic;
             _audioSource.volume = 0.3f;
             _audioSource.Play();
             Time.timeScale = 1;
-            player.transform.Find("Main Camera").Find("FPSCrossbow").GetComponent<FPSCrossbow>().ActivateSuperShots();
             _cannon1.StartShooting();
             _cannon2.StartShooting();
         }
