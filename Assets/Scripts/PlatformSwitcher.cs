@@ -30,22 +30,30 @@ public class PlatformSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        platformText.text = ("Current Platform:" + Application.platform.ToString());
+        if(platformText!=null)
+            platformText.text = ("Current Platform:" + Application.platform.ToString());
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            platformText.text = ("Current Platform:" + Application.platform.ToString());
+            if(VRController!=null)
+                EnableVRMode();
+            
+        }
+        else
+        {
+            if (platformText != null)
+                platformText.text = ("Current Platform:" + Application.platform.ToString());
+
+            if (FPSController != null)
+                EnableFPSMode();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Application.platform == RuntimePlatform.Android)
-        {
-            platformText.text = ("Current Platform:" + Application.platform.ToString());
-            EnableVRMode();
-        }
-        else
-        {
-            platformText.text = ("Current Platform:" + Application.platform.ToString());
-            EnableFPSMode();
-        }
+        CheckHands();
     }
 
     public void EnableVRMode()
@@ -113,21 +121,27 @@ public class PlatformSwitcher : MonoBehaviour
             {
                 leftOVRController.SetActive(true);
                 leftPointerBeam.SetActive(true);
-                if (VREventSystem != null)
-                    ovrInputModule.rayTransform = leftHandAnchor.transform;
 
                 rightOVRController.SetActive(false);
                 rightPointerBeam.SetActive(false);
+
+                if (VREventSystem != null)
+                    ovrInputModule.rayTransform = leftHandAnchor.transform;
+
+                
             }
-            else
+            else if((OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote)))
             {
                 rightOVRController.SetActive(true);
                 rightPointerBeam.SetActive(true);
-                if (VREventSystem != null)
-                    ovrInputModule.rayTransform = rightHandAnchor.transform;
 
                 leftOVRController.SetActive(false);
                 leftPointerBeam.SetActive(false);
+
+                if (VREventSystem != null)
+                    ovrInputModule.rayTransform = rightHandAnchor.transform;
+
+                
             }
         }
         
