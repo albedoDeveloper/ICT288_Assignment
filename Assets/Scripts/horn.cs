@@ -38,7 +38,8 @@ public class horn : MonoBehaviour
         {
             GetComponent<AudioSource>().Play();
             hornPosition = 1;
-            _tut.ChainPulled();
+            if(_tut !=null)
+                _tut.ChainPulled();
         }
            
     }
