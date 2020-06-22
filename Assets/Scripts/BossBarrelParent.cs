@@ -8,8 +8,6 @@ using UnityEngine;
 /// </summary>
 public class BossBarrelParent : MonoBehaviour
 {
-
-
     private Vector3 fpsCharacter;
 
     [SerializeField]

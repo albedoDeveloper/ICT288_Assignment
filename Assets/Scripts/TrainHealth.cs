@@ -71,7 +71,7 @@ public class TrainHealth : MonoBehaviour
     {
         if (other.GetComponent<Barrel>() != null)
         {
-            TakeDamage(100);
+            TakeDamage(5);
             Destroy(other.gameObject);
         }
     }

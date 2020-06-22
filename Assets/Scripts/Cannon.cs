@@ -16,13 +16,12 @@ public class Cannon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ShootBarrel());
+        StartCoroutine("ShootBarrel");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StopShooting()
     {
-        
+        StopCoroutine("ShootBarrel");
     }
 
     IEnumerator ShootBarrel()

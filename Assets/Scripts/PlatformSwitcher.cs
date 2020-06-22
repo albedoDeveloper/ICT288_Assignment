@@ -19,7 +19,10 @@ public class PlatformSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        platformText.text = ("Current Platform:" + Application.platform.ToString());
+        if (platformText != null)
+        {
+            platformText.text = ("Current Platform:" + Application.platform.ToString());
+        }
     }
 
     // Update is called once per frame
@@ -27,12 +30,20 @@ public class PlatformSwitcher : MonoBehaviour
     {
         if(Application.platform == RuntimePlatform.Android)
         {
-            platformText.text = ("Current Platform:" + Application.platform.ToString());
+            if (platformText != null)
+            {
+                platformText.text = ("Current Platform:" + Application.platform.ToString());
+            }
+
             EnableVRMode();
         }
         else
         {
-            platformText.text = ("Current Platform:" + Application.platform.ToString());
+            if (platformText != null)
+            {
+                platformText.text = ("Current Platform:" + Application.platform.ToString());
+            }
+
             EnableFPSMode();
         }
     }
