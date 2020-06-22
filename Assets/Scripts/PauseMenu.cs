@@ -38,6 +38,7 @@ public class PauseMenu : MonoBehaviour
     public void ResetLevel()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
