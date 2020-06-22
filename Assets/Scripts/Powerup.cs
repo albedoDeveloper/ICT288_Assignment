@@ -10,6 +10,7 @@ public class Powerup : MonoBehaviour
     [SerializeField] Level3Manager _lvl3Man;
     [SerializeField] FPSCrossbow _crossbowPC;
     [SerializeField] FPSCrossbow _crossbowVR;
+    [SerializeField] FPSCrossbow _crossbowVRLeft;
     [SerializeField] PowerupType _powerup;
     [SerializeField] int _cost;
     [SerializeField] TextMeshProUGUI _costText;
@@ -29,6 +30,7 @@ public class Powerup : MonoBehaviour
             if (Application.platform == RuntimePlatform.Android)
             {
                 _crossbowVR.ActivatePowerup(_powerup);
+                _crossbowVRLeft.ActivatePowerup(_powerup);
             }
             else
             {
