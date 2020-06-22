@@ -30,23 +30,28 @@ public class PlatformSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(platformText!=null)
+        if (platformText != null)
+        {
             platformText.text = ("Current Platform:" + Application.platform.ToString());
+        }
 
         if (Application.platform == RuntimePlatform.Android)
         {
-            platformText.text = ("Current Platform:" + Application.platform.ToString());
-            if(VRController!=null)
-                EnableVRMode();
-            
+            if (platformText != null)
+            {
+                platformText.text = ("Current Platform:" + Application.platform.ToString());
+            }
+
+            EnableVRMode();
         }
         else
         {
             if (platformText != null)
+            {
                 platformText.text = ("Current Platform:" + Application.platform.ToString());
+            }
 
-            if (FPSController != null)
-                EnableFPSMode();
+            EnableFPSMode();
         }
     }
 

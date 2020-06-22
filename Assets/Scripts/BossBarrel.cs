@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 /// <summary>
 /// Author: Kye Horbury
 /// 
@@ -8,8 +11,13 @@ using UnityEngine;
 
 public class BossBarrel : Barrel
 {
+    [SerializeField] GameObject _explosion;
+    [SerializeField] GameObject _healthBar;
+    [SerializeField] int _bossStartingHealth = 9000;
+    Slider _healthSlider;
+    TextMeshProUGUI _healthText;
+
     Rigidbody _rb2 = null;
-    int _health2 = 30;
 
     private Vector3 fpsCharacter;
 
@@ -17,11 +25,20 @@ public class BossBarrel : Barrel
     // Start is called before the first frame update
     void Awake()
     {
+        _health = _bossStartingHealth;
+        _healthSlider = _healthBar.GetComponent<Slider>();
+        _healthText = _healthBar.transform.Find("Text").GetComponent<TextMeshProUGUI>();
         _rb2 = GetComponent<Rigidbody>();
         fpsCharacter = GameObject.FindGameObjectWithTag("FPSCharacter").transform.position;
         fpsCharacter = new Vector3(fpsCharacter.x, transform.position.y, fpsCharacter.z);
 
         defaultRotation = transform.eulerAngles;
+    }
+
+    void UpdateGUI()
+    {
+        _healthSlider.value = _health;
+        _healthText.text = "" + _health;
     }
 
     public void InitialPush(int force)
@@ -45,15 +62,30 @@ public class BossBarrel : Barrel
 
     public override void TakeDamage(int amount)
     {
-        _health2 -= amount;
-        if (_health2 <= 0)
+        _health -= amount;
+        if (_health <= 0)
         {
             GameObject manager = GameObject.Find("Level3Manager");
             if (manager != null)
             {
                 manager.GetComponent<Level3Manager>().AddCash(50);
             }
-            Destroy(gameObject);
+
+            StartCoroutine("EndLevel");
         }
+
+        UpdateGUI();
+
+        Debug.Log("Boss Barrel took damage");
+    }
+
+    IEnumerator EndLevel()
+    {
+        _explosion.SetActive(true);
+
+        yield return new WaitForSeconds(3);
+
+        Debug.Log("Load FinalCutscene");
+        SceneManager.LoadScene("FinalCutscene");
     }
 }

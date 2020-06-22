@@ -21,6 +21,8 @@ public class BarrelSpawner : MonoBehaviour
     [SerializeField] GameObject _waveBarPC;
     [SerializeField] GameObject _waveBarVR;
     [SerializeField] AudioClip[] _clips;
+    [SerializeField] GameObject _bossBarrel;
+    [SerializeField] int _bossSpawnOnWave = 5;
     int _currentWave = 1;
     int _barrelsLeft;
     AudioSource _audioSource;
@@ -60,14 +62,25 @@ public class BarrelSpawner : MonoBehaviour
         _currentWave++;
         UpdateWaveBarGUI();
         Debug.Log("Wave " + _currentWave + " started");
-        StartCoroutine("SpawnBarrels");
+        _audioSource.clip = _clips[_currentWave - 1];
+        _audioSource.Play();
+        if (_currentWave == _bossSpawnOnWave)
+        {
+            SpawnBoss();
+        }
+        else
+        {
+            StartCoroutine("SpawnBarrels");
+        }
+    }
+
+    void SpawnBoss()
+    {
+        _bossBarrel.SetActive(true);
     }
 
     IEnumerator SpawnBarrels()
-    {
-        _audioSource.clip = _clips[_currentWave - 1];
-        _audioSource.Play();
-
+    { 
         _barrelsLeft = _waves[_currentWave-1].numOfBarrels;
 
         while (true)

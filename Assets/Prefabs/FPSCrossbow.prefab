@@ -1,20 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1762527356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237514394004423753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 486445d0c1e47274b9a62571ca487c03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _boltModel: {fileID: 1343955992896929095}
-  _projectile: {fileID: 3411755564766383467, guid: a7947544d7802d84ea8ec55a1d66ac71,
-    type: 3}
 --- !u!82 &5818209325602743239
 AudioSource:
   m_ObjectHideFlags: 0
@@ -111,6 +96,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1762527356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237514394004423753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486445d0c1e47274b9a62571ca487c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boltModel: {fileID: 1343955992896929095}
+  _projectile: {fileID: 3411755564766383467, guid: a7947544d7802d84ea8ec55a1d66ac71,
+    type: 3}
+  _superProjectile: {fileID: 3411755564766383467, guid: b502524370e0a07499aea341bcb3b328,
+    type: 3}
+  _powerupBar: {fileID: 0}
 --- !u!1001 &237514394004390635
 PrefabInstance:
   m_ObjectHideFlags: 0
