@@ -14,6 +14,7 @@ public class TrainHealth : MonoBehaviour
     [SerializeField] GameObject _crossbow;
     [SerializeField] GameObject _vrController;
     [SerializeField] LineRenderer _lineRender;
+    [SerializeField] GameObject _gameOverButtonVR;
 
     public void TakeDamage(short damage)
     {
@@ -35,13 +36,20 @@ public class TrainHealth : MonoBehaviour
     {
         if (Application.platform == RuntimePlatform.Android)
         {
-            Vector3[] p = new Vector3[3];
-            _lineRender.GetPositions(p);
-            p[1].z *= 10;
-            _lineRender.SetPositions(p);
-            _gameOverPanelVR.SetActive(true);
-            _crossbow.SetActive(false);
-            _vrController.SetActive(true);
+            //Vector3[] p = new Vector3[3];
+            //_lineRender.GetPositions(p);
+            //p[1].z *= 10;
+            //_lineRender.SetPositions(p);
+            //_gameOverPanelVR.SetActive(true);
+            _gameOverButtonVR.SetActive(true);
+            GameObject left = GameObject.Find("VR_Character").transform.Find("TrackingSpace").Find("LeftHandAnchor").Find("PointerBeam").Find("FPSCrossbow").gameObject;
+            GameObject right = GameObject.Find("VR_Character").transform.Find("TrackingSpace").Find("RightHandAnchor").Find("PointerBeam").Find("FPSCrossbow").gameObject;
+            left.SetActive(false);
+            right.SetActive(false);
+            GameObject leftOVR = GameObject.Find("VR_Character").transform.Find("TrackingSpace").Find("LeftHandAnchor").Find("OVRControllerPrefab").gameObject;
+            GameObject rightOVR = GameObject.Find("VR_Character").transform.Find("TrackingSpace").Find("RightHandAnchor").Find("OVRControllerPrefab").gameObject;
+            leftOVR.SetActive(true);
+            rightOVR.SetActive(true);
         }
         else
         {
@@ -64,7 +72,6 @@ public class TrainHealth : MonoBehaviour
             _healthPC.GetComponent<Slider>().value = _healthPoints;
             _healthPC.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "" + _healthPoints;
         }
-        
     }
 
     private void OnTriggerEnter(Collider other)
